@@ -1,2 +1,0 @@
-# Typora Notes
-## Andrew Xie
