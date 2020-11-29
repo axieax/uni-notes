@@ -10,6 +10,10 @@ Cohesion - degree to which elements of a module belong together - elements belon
 
 Cyclomatic complexity - a measure of the branching complexity of functions - computed by counting the number of linearly-independent paths through a function
 
+- To compute, convert function into a control flow graph and calculate the value of the formula `V(G) = e - n + 2` (e = #edges, n = #nodes)
+
+Examples:
+
 
 
 
