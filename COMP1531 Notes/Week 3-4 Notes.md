@@ -1,6 +1,6 @@
 # Pythonic
 
-```py	
+```python
 [2 * num if num % 2 == 0 else num for num in numbers]
 ```
 

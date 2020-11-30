@@ -13,7 +13,7 @@ Epic user stories
 How do we know we've met the user story requirement?
 
 - **I**ndependent: user story could be developed independently and delivered separately
-- **N**egotiable: avoid too much detail.
+- **N**egotiable: avoid too much detail
 - **V**aluable: must hold some value to the client
 - **E**stimable: we'll get to this in a later lecture
 - **S**mall: user story should be small
