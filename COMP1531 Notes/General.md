@@ -21,4 +21,4 @@ Bad smell: mutating something you are iterating over (removing elements whilst i
 
 - use list comprehension instead: [x for x in list if not _]
 
-
+count('h', 'haydhen') == 2
