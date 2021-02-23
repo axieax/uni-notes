@@ -88,7 +88,7 @@ SELECT * FROM table1 WHERE col = ''; SELECT * FROM table2;-- '; --- allows for q
 - Escaping all user supplied input
 - Enforcing least privilege (permissions)
 
-# Tutorial
+# Tutorial: Case Study 1 - Rumble
 
 Case study: earthquake
 
@@ -98,17 +98,13 @@ Case study: earthquake
 Case study: tsunami
 
 - Rethinking ideas
-- Mindset?
-
-
+- Defender mindset - don't give up, keep trying to come up with more ideas
 
 # Week 1 Reflection
 
-Although it's been a busy first week, I thoroughly enjoyed the content learned from attending the lectures and tutorials, as well as from the weekly activities. The lectures opened my eyes to the many different forms of security, especially the connection between physical security and the cyber world. The difference between attacker and defender mindsets and how attackers find the weakest part of the defence is very interesting, for example a burglar breaking into a house despite an 'unbreakable' front door. I was surprised at my current security mindset, including from the reasonableness estimation exercises, and my attacker mindset (resiliance and strategies). However, I was also surprised by how vulnerable systems really are, and how attackers can still break into a system despite one very secure defence measure, learning some of the many different methods of attack through the activities. Having participated in CTF's before, I enjoyed working through the cybersecurity activities, especially the practical extension ones involving Steganography and SQL injections. Being given the opportunity for self-learning was also very 
+Although it's been a busy first week, I thoroughly enjoyed the content learned from attending the lectures and tutorials, as well as from the weekly activities. The lectures opened my eyes to the many different forms of security, especially the connection between physical security and the cyber world. The difference between attacker and defender mindsets and how attackers find the weakest part of the defence is very interesting, for example a burglar breaking into a house despite an 'unbreakable' front door. Now I know that even when designing strong defences, an attacker mindset has to also be considered. I was surprised by my similarities to the "security mindset", including from the reasonableness estimation exercises and my attacker mindset (resiliance and strategies), and I can't wait to see how it develops further. Examing the case studies of earthquake and tsunami survival during our tutorial reinforced the aspect of a defender mindset where although there may not be a perfect solution, better ideas can be generated through not giving up and trying to come up with more ideas as a team. 
 
-Analysing the Wargames movie emphasised the importance of security design, and how there are tradeoffs to every design. 
+Analysing the Wargames movie raised several security issues I had not really thought about before, emphasising the importance of security design, and how there are tradeoffs to every design. I was surprised by how vulnerable systems really are, and how attackers can still break into a system despite one very secure defence measure, learning some of the many different methods of attack through the activities. Having participated in a few CTF's before, I enjoyed working through the cybersecurity activities, especially the practical extension ones involving Steganography and SQL injections. I also found the opportunity for self-learning very helpful and effective personally. Honestly, I spent too much time this week on security, travelling to university for security classes from Monday to Wednesday, then spending the rest of the week completing the many activities. Without a clear indication of how much of the activities were expected to be complete, I managed to complete most of them, mostly because I enjoyed working on the exercises. For the future, I am planning on completing less of the activities as they are really interfering with my workload (four uni subjects this term, two director roles, two peer mentor roles, a part-time job as a software engineer) and focusing more on the ones I find interesting. This would involve starting from the end of the activities with the extension section which were challenges I really enjoyed completing, then selecting some of the activities from each other section that I find interesting and beneficial to my cyber security development as well. 
 
 
-
-Movie
 

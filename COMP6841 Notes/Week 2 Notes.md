@@ -84,3 +84,37 @@ Kerckhoffs' design principles for military ciphers
 
 
 
+# Tutorial: Case Study 2 - Drill
+
+Pre-reading:
+
+- Info: https://www.theguardian.com/environment/2011/apr/20/deepwater-horizon-key-questions-answered
+- Permanently sealed four months later
+- Safe and fast
+  - defence: make sure system is secure and attack responses are fast
+  - attack: can't take too long or else it would be detected
+  - don't compromise safety/security for speed
+- Mike Williams determined to survive - defender mindset - don't give up
+- Blowout preventer - single point failure
+- Defence: reviews from multiple people should be considered
+- Proactive vs reactive mindset - especially when many lives are on the line
+- Safety culture - always keeping safety in mind (Deepwater Horizon Final Report)
+  - "as a result of a cascade of deeply flawed failure and signal analysis, decision-making, communication, and organisational - managerial processes, safety was compromised to the point that the blowout occurred with catastrophic effects."
+- Address indications of issues for security - don't downplay severity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
