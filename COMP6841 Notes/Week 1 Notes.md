@@ -65,6 +65,8 @@ Tamper proof vs tamper evident
 
 # Extension - SQLi
 
+https://youtu.be/bAhvzXfuhg8
+
 ```sql
 SELECT * FROM sqlite_master WHERE type = 'table'; --- info about all the tables (differ between different sql dbs)
 

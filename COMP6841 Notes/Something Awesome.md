@@ -1,60 +1,83 @@
-# Something Awesome
+# Chrome Credential Stealer
 
-## Proposal
+## Step 1: Examining Chromium Source Code
 
-**Chrome Credential Stealer**
 
-For my Something Awesome Project, I'm thinking about writing a program which steals saved user credentials from Google Chrome, a popular browser used by many. Since the saved credentials have to be stored somewhere and recovered later for functions such as autofill, I figured that although the passwords are most likely encrypted, they are probably reversible so they can be retrieved in the future. Doing some research, I found out that these credentials are stored in a SQLite database, with passwords encrypted using the AES-128-CBC standard. However, accessing the database on later versions of MacOS may be a bit more difficult, requiring the user to enter their password in order to access the safe storage key. As such, I'm looking to find ways to bypass this restriction or try to get a user to enter their password through social engineering. Of course, all this will be done with their explicit consent beforehand, although being aware of the true purpose of the program will cause confirmation bias in testing so I'm thinking of splitting my testers into two main groups:
 
-1. Testing program compatibility and successful extraction - explicitly tell them beforehand about the credential stealer and promise (show in front of them) that their extracted data will be completely destroyed after the test
-2. Testing social engineering - modify my program so that instead of sending off their credentials, the extracted credentials are displayed on their screen or stored locally on their devices for them to confirm and delete at will
 
-I'm planning on programming this in Python, with different levels of execution from running the script manually, hiding it inside another application or browser extension as a trojan, or through a USB. Encrypting and sending the extracted data to a remote server will also be the most convenient method (or to a local server. This will definitely be a challenging project and I hope to learn more about password security from this exercise. 
 
-**Topics covered:**
 
-- Internet and computer security
-- Reverse engineering
-- Encryption / decryption
-- SQL database access
-- Trojan programming
-- Social engineering
-- Operating systems
 
-**Success criteria:**
+Reverse Engineering
 
-- Pass
-  - There is evidence of a correct logical thought process for solving the problem, and database on Windows successfully accessed to retrieve encrypted credentials (with encrypted passwords)
-  - Poor code formatting
-  - Includes a supporting article / documentation for the project
-- Credit
-  - Partially working on Windows only
-  - Extracted (decrypted) credentials displayed on Python output only
-  - Ok code formatting
-  - Single executable Python script visible to the user
-  - Includes a supporting article / documentation for the project
-- Distinction
-  - Partially working on Windows, Linux
-  - Extracted (decrypted) credentials saved to a file
-  - Good general code formatting
-  - Attempted to hide code execution from the user
-  - Includes a supporting article / documentation for the project, discussing Chrome's password encryption methods
-- High Distinction
-  - Working on Windows, Linux, MacOS
-  - Extracted (decrypted) credentials sent to a remote server
-  - Well-formatted code with concise explanations
-  - Code execution hidden from the user, using social engineering to gain additional permissions if required
-  - Includes a supporting article for the project, discussing Chrome's password encryption methods and comparing with other common browsers such as Firefox, Edge and Safari
+Findings:
 
-<u>Links to check out:</u>
+- Different encryptions for Windows (DPAPI), Mac (Keychain Safe Storage) and Linux (KeyRing / Kwallet)
+  - https://source.chromium.org/chromium/chromium/src/+/master:docs/security/faq.md;l=612?q=dpapi&ss=chromium%2Fchromium%2Fsrc
+- Windows:
+  - Encryption Key (stored in local state, base64 encoded with DPAPI prefix)
+    - https://source.chromium.org/chromium/chromium/src/+/master:components/os_crypt/os_crypt_win.cc;l=188?q=EncryptStringWithDPAPI&ss=chromium%2Fchromium%2Fsrc
+    - ![image-20210322122307430](images/image-20210322122307430.png)
+  - AES
+    - https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-devs
+    - Might be CBC - nvm it's GFM
+      - https://source.chromium.org/chromium/chromium/src/+/master:third_party/tlslite/tlslite/utils/aes.py;l=27?q=aes&ss=chromium%2Fchromium%2Fsrc
+    - Symmetric - same key for encryption and decryption
+    - Encryption: iv + AES.new(16-byte key, MODE, iv)
+    - kEncryptionVersionPrefix: v10 **old versions use a different version??**
+    - Nonce length 12 (https://source.chromium.org/chromium/chromium/src/+/master:components/os_crypt/os_crypt_win.cc;l=157?q=kEncryptionVersionPrefix&ss=chromium%2Fchromium%2Fsrc)
+  - Old Chrome code https://chromium.googlesource.com/chromium/src/+/refs/tags/79.0.3941.0/components/os_crypt/os_crypt_win.cc
+- Linux:
+- Mac:
 
-- https://steveperrycreative.com/post/how-chrome-stores-your-passwords-windows-and-macos-and-why-you-still-shouldnt-let-it
+Ideas:
 
-- http://raidersec.blogspot.com/2013/06/how-browsers-store-your-passwords-and.html
+- Malware that stays on PC
+- Master encryption key stored (encrypted with RSA?) so that even changing passwords won't break the Windows API call decryption functionality
+- Py to exe
+- Sends new request randomly to prevent detection (don't want it periodically, don't want it every time the db gets updated)
 
-- https://source.chromium.org/chromium/chromium/src/+/master:components/os_crypt/os_crypt_mac.mm (Chromium source code in C++ / Objective C)
 
-- https://docs.ioin.in/writeup/bufferovernoah.com/_2016_10_17_chrome_/index.html
+
+KrwmTools
+
+Expand to other Chromium browsers, i.e. Chromium, Edge, Opera, Vivaldi
+
+
+
+Suggestions:
+
+IV key saved over web? encrypted with private key
+
+CryptProtectData API Function - only user with the same credentials as the user who encrypted it can decrypt it
+
+What does Firefox do differently?
+
+
+
+
+
+Cookies
+
+Stealing while Chrome is open - can steal session cookie data
+
+Without user knowing
+
+
+
+
+
+Windows relys on the fact that data is safe as long as the user trying to decrypt the data is the same as the user who encrypted it
+
+However, this user can be compromised, as demonstrated - what error is this? data validity? auth?
+
+Synced on G account - sign in on any device if you have their account details
+
+
+
+Autofill - can steal addresses and other sensitive data
+
+https://source.chromium.org/chromium/chromium/src/+/master:components/test/data/autofill/tools/add_disused_address.py;l=14?q=%22_WEB_DATA_DB%22&ss=chromium%2Fchromium%2Fsrc
 
 
 

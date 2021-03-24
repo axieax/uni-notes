@@ -207,12 +207,6 @@ Using the nRF Connect app on my iPhone, I was able to walk around and visually i
 
 <img src="images/bluetooth.jpg" alt="bluetooth" style="zoom:30%;" />
 
-## Physical security
-
-Start to question physical security through a practical activity
-
-
-
 ## Dumpster diving
 
 Look through some virtual trash - and see if you can find any treasure
@@ -315,10 +309,6 @@ Claim 6: Apparently Americans spend closer to 5 hours per day, which is quite re
 <u>Reflection:</u>
 
 As someone who thinks rather quantitatively, my estimates are usually quite reasonable and accurate. Although for most claims, my instincts and quick estimations seemed to be very similar, I was still quite off for at least one of them. 
-
-## Civil
-
-
 
 # Extension
 
@@ -493,7 +483,7 @@ sudo nmap -sC -sV -O 100.95.246.152 -p 40-1000
 - -O: attempts to determine what kind of operating system the server is running
 - -p: port range to scan (1 to 65535)
 
-<img src="images/nmap-3918995.png" alt="nmap" style="zoom:50%;" />
+<img src="images/nmap.png" alt="nmap" style="zoom:50%;" />
 
 **Try Hack Me Recon Challenge: ZZEN9201 - Knock**
 
