@@ -83,5 +83,18 @@ https://source.chromium.org/chromium/chromium/src/+/master:components/test/data/
 
 
 
+Testers:
+
+- Alvin - tested extracted data
+  - Doesn't store autofill data - uses Dashlane instead
+  - Extracted some useless info
+- 
+
+
+
+
+
+Test requests
+
 
 
