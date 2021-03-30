@@ -100,7 +100,7 @@ Q5
   - If there is a 94 ^ -10 chance that one page begins with banana and the other with fish, there are therefore 65.5 bits of page combinations required to get close to guaranteeing this outcome. Even considering half of these bits on average would mean the number of bits required would be closer to 70 due to the lower bound. 
 - Hence, 120 bits required
 
-
+^ Incorrect
 
 
 

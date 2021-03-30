@@ -8,3 +8,17 @@ Bash strings
 - `"` expand inside
 - `python -c 'print "\x21"'`
 
+Checks
+
+- Forensic
+- Web
+  - XSS
+  - SQLi
+  - MAC
+
+
+
+
+
+
+

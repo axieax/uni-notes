@@ -55,42 +55,18 @@ What does Firefox do differently?
 
 
 
-
-
-Cookies
-
-Stealing while Chrome is open - can steal session cookie data
-
-Without user knowing
+Why choose Windows? most popular
 
 
 
 
 
-Windows relys on the fact that data is safe as long as the user trying to decrypt the data is the same as the user who encrypted it
-
-However, this user can be compromised, as demonstrated - what error is this? data validity? auth?
-
-Synced on G account - sign in on any device if you have their account details
-
-
-
-Autofill - can steal addresses and other sensitive data
-
-https://source.chromium.org/chromium/chromium/src/+/master:components/test/data/autofill/tools/add_disused_address.py;l=14?q=%22_WEB_DATA_DB%22&ss=chromium%2Fchromium%2Fsrc
-
-
-
-
-
-Testers:
+## Testers
 
 - Alvin - tested extracted data
-  - Doesn't store autofill data - uses Dashlane instead
-  - Extracted some useless info
+  - Doesn't store autofilled data - uses Dashlane instead
+  - Extracted some basic information which can be used to build a profile
 - 
-
-
 
 
 
