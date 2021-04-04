@@ -37,3 +37,19 @@
   - Adding water storage bags to the command module.
   - [Apollo 13: Facts About NASA's Near-Disaster | Space](https://www.space.com/17250-apollo-13-facts.html)
 
+- Decentralised control
+- Conflict of interest
+- Communication
+
+
+
+Past Exam
+
+bits of security for passport photo
+
+bits for each identifiable feature - e.g. eyes colours, face shapes etc.
+
+People change appearances over time - multiply by 4 etc.
+
+b64 instead of jwt for dict - too long
+

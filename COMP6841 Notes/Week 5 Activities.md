@@ -41,6 +41,7 @@ Length extension attacks
 - key + message + padding + extension
 - Extension must be in its own block so key + message + padding must be a multiple of 512 bits
 - [Hash Length Extension Attacks | WhiteHat Security](https://www.whitehatsec.com/blog/hash-length-extension-attacks/)
+- https://youtu.be/3R_q5XD-RJU
 
 Database dump
 

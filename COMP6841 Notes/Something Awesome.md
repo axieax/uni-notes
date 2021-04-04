@@ -74,3 +74,23 @@ Test requests
 
 
 
+Run executable in terminal - skip GUI warning
+
+Networking topic - socket programming, rsa key exchange
+
+Checkout different branches
+
+
+
+
+
+Networking:
+
+- RSA - long time
+- AES - symmetric, only one-way required
+- Hybrid approach 
+
+
+
+
+

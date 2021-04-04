@@ -102,11 +102,13 @@ Q5
 
 ^ Incorrect
 
+sqrt(60 bits) => 30 bits
 
+20 bits for each
 
+50 bits
 
-
-
+Then doubles for fish and banana
 
 
 
