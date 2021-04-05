@@ -32,15 +32,21 @@ Upon extracting the rows corresponding to credentials, I was surprised to see va
 
 ## Part 1.2: Decrypting the data
 
-As expected, the passwords were encrypted (thankfully!). From my research, it seemed that all I needed to do now was pass the encrypted passwords to Window's DPAPI (Data Protection API) for decryption, using the pywin32 Python package in order to make this Windows API call in Python. **EXPLAIN THE DPAPI AND EVALUATE**
+As expected, the passwords were encrypted (thankfully!). From my research, it seemed that all I needed to do now was pass the encrypted passwords to Window's DPAPI (Data Protection API) for decryption, using the pywin32 Python package in order to make this Windows API call in Python. The DPAPI is a form of encryption at the operating system level which relies on the credentials of the user logged into the computer. Although it offers quite a strong form of encryption, it can be easily exploited using the attacker mindset on the same machine, where processes created by the same user are able to make these system calls without requiring knowledge of the user's login password. As a result, I am able to use this API to decrypt passwords which were encrypted with the same scheme without requiring user authentication once they are already logged into their computer, unlike the Chrome application where the user is prompted to enter their login password in order to view their stored passwords. 
 
-However, once I had finally managed to install the dependency using another wrapper package (pypiwin32), I knew something was wrong when the passwords could not be decrypted using this approach. 
+However, once I had finally managed to install the Python dependency using another wrapper package (pypiwin32), I knew something was wrong when the passwords could not be decrypted using this approach. Having a look over my sources again, I noticed that they were quite outdated, ranging from 2013 to 2017. Doing some further research, I encountered [this article](https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-devs) which pointed that Chrome altered its encryption scheme for versions 80+ to AES-256, which was able to prevent the popular AZORult malware from stealing data from up-to-date Chrome users. This explained why I was unable to simply decrypt the passwords with DPAPI. Without much additional information on how the new encryption scheme worked, I resorted to analysing the open-source [Chromium source code](https://source.chromium.org/chromium/chromium/src) which Google Chrome was built on, in hopes of reverse engineering the password encryption process. 
 
-Old chrome version -> reverse engineering time
+After several hours of searching, I came across the [components/os_crypt/os_crypt_win.cc file](https://source.chromium.org/chromium/chromium/src/+/master:components/os_crypt/os_crypt_win.cc?q=DPAPI) written in C++ which seemed to contain what I was looking for. One of the functions of interest was the [OSCrypt::EncryptString function](https://source.chromium.org/chromium/chromium/src/+/master:components/os_crypt/os_crypt_win.cc;l=135?q=DPAPI). The annotated code extract below illustrates my findings regarding Chromium password encryption. I now knew which cipher was used to encrypt the passwords, and the structure for the passwords which I had just extracted. However, I was still unsure about two things: what was this "encryption key" and how does AES-GCM work?
 
+<img src="images/oscrypt_encryptstring.jpg" alt="oscrypt_encryptstring" style="zoom:50%;" />
 
+Searching the code base for "EncryptionKey", I was able to find where encryption keys were stored and how they were encrypted, surprisingly within a constructor method for OSCrypt defined 30 lines below the extract above. I remembered seeing a Local State file when playing around with my Chrome data in %APPDATA%. Surely enough, I managed to locate the file and find a value for an "encrypted_key" key within the file's JSON-like structure. Loading the Local State file into Python and reversing the encryption process described below, I was able to successfully extract the encryption key and initialise my AES cipher. Although I didn't really understand what the different AES modes referred to, I was still able to plug in my extracted encryption key, nonce and ciphertext values into the cipher and to my pleasant surprise (and relief after more than 10 hours spent looking through the Chromium code base), see my actual password displayed on my screen, followed by some random bytes at the end. 
 
-Reverse engineering
+<img src="images/oscrypt_key.jpg" alt="oscrypt_key" style="zoom:50%;" />
+
+Up to this point, I still had not explored what the AES-GCM cipher was and how it worked. AES (Advanced Encryption Standard) is a strong encryption specification based on a symmetric-key algorithm, meaning it uses the same key for both encryption and decryption. Plaintext is converted to ciphertext through some byte permutation and substitution cipher, so both texts would have the same length. Since AES has a fixed block size of 128 bits or 16 bytes, the input may also need to be padded to ensure its length is a multiple of the block size. The AES-256 algorithm described refers to a key length of 256 bits or 32 bytes. GCM (Galois/Counter Mode) is an extension of CTR (counter) mode with GMAC (Galois Message Authentication Code) for authentication, where finite field arithmetic on the Galois field is used to authenticate the encryption. An integer counter is used in the encryption process for CTR mode, changing with each block of text when encrypting, before XOR'ing each block with the corresponding plaintext to obtain the ciphertext. The nonce, also commonly known as the initialisation vector, sets the starting state of the counter, affecting the encryption of all the following bytes. A different nonce should be used for encrypting different messages with the same key in order to prevent two-time pad attacks (Joux, 2006). An intercepting attacker can also recover the authentication key and use bitflip attacks to modify the integrity of the received payload (Wong, 2016). This is why Chrome uses a different nonce to encrypt each password. Although the nonce is stored in plaintext next to each encrypted password, this is still generally acceptable as simply using a different nonce prevents an attacker from working out information about the cipher and plaintexts using the ciphertexts. 
+
+Following the function references, I was able to track down a reference to "additional data" or "authentication tag" which reminded me of the GMAC authentication used by the AES-GCM cipher, which I discovered was [hash defined](https://source.chromium.org/chromium/chromium/src/+/master:third_party/boringssl/src/crypto/fipsmodule/cipher/e_aes.c;l=886) to be of length 16 bytes. This explained the seemingly random sequence of bytes appended to my decrypted passwords. Since data integrity was not a major concern for password extraction, I was able to successfully extract all my saved passwords from the Google Chrome browser by ignoring the last 16 bytes. 
 
 ## Part 1.3: Extension to autofill information, cookies and history
 
@@ -48,7 +54,7 @@ Reverse engineering
 
 ## Part 1.4: Extension to different Chromium browsers
 
-
+Multiple profiles
 
 Copy and paste
 
@@ -86,25 +92,44 @@ Tags: sql, decryption
 
 # Part 2: Sending the Data to a Remote Server
 
+Originally planned to do a credentials stealer
+
+Although this can be used to extract data for individuals, an additional malicious payload was also included - interesting
+
+## Part 2.1: Socket Programming
 
 
-#
+
+## Part 2.2: Securing the Stream with End to End Encryption
 
 
 
 Hybrid end to end encryption
 
+Explain AES-GCM mode - stream cipher, Netflix
 
-
-Tags: networking, encryption, socket programming, malware
+Tags: networking, encryption, socket programming, spyware
 
 # Conclusion
+
+Security is only as strong as its weakest link https://security.stackexchange.com/questions/230137/did-changes-in-google-chrome-80-weaken-cookie-and-password-encryption
+
+Easy to extract encryption key
+
+Interesting findings when examining the source code:
+
+- How Chrome stores passwords for different operating systems using provided os user storage mechanism
+  - https://source.chromium.org/chromium/chromium/src/+/master:docs/security/faq.md;l=612?q=dpapi&ss=chromium%2Fchromium%2Fsrc
+
+
 
 Windows executable for those without Python installed
 
 Environment variables for socket channels?
 
 Apply many concepts learned from course
+
+Rewarding
 
 # Demo and Testing
 
@@ -118,17 +143,37 @@ Remote - server and client
 
 
 
+Good faith policy
+
+# Sources
+
+[Data Protection API — Threat Hunter Playbook](https://threathunterplaybook.com/library/windows/data_protection_api.html)
+
+[Windows Data Protection | Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/ms995355(v=msdn.10))
+
+[Breaking https' AES-GCM (or a part of it) (cryptologie.net)](https://cryptologie.net/article/361/breaking-https-aes-gcm-or-a-part-of-it/) - David Wong 2016
+
+[JOUX - Authentication Failures in NIST version of GCM](https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf)
+
+[Chromium source code](https://source.chromium.org/chromium/chromium/src)
+
+https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-devs
 
 
 
+Tags: cryptography, reverse engineering, 
 
 
 
+Todo:
 
-
-
-
-
+- Finish this
+- Video Demo
+- Different nonce for socket
+- See if GMAC validation works for socket communication - file names created - don't want this to be tampered with if intercepted
+- Code review
+- Separate remote branch
+- Update README
 
 
 
