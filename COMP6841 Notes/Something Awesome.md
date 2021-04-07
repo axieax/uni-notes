@@ -50,15 +50,19 @@ Following the function references, I was able to track down a reference to "addi
 
 ## Part 1.3: Extension to autofill information, cookies and history
 
-
+Having successfully extracted credentials from Google Chrome, I revisited the directory containing my Chrome data to look for other files which could be exploited as well. Noticing the Cookies file reminded me of an extension topic where session tokens may be exploited through XSS attacks, so I tried my previous techniques of using SQL queries to learn more about the database structure before extracting and decrypting the data. From my previous source code analysis, I had a feeling that other sensitive data such as cookies would be encrypted in a similar way to credentials due to how general the os_crypt header file from before seemed for encrypting such data. Another file which caught my attention was the Web data file, where I noticed my address revealed in plaintext whilst scrolling through its contents. Once again, using SQL queries, I was able to find several tables of interest for autofill information from input fields and personal details to credit card information, before extracting these in a similar way to before. With an attacker mindset, I also decided to extract web and search history as they have the potential to reveal additional information about a client, such as what their interests are, their profession and when they work, as well as activity on sites such as Facebook. Unless they use incognito or private browsing mode, even clients using a VPN service to hide their presence can still have their activity tracked through this feature. With all this available information, an attacker is able to better build a profile about their client, and could more easily extort or target ads towards them for example. 
 
 ## Part 1.4: Extension to different Chromium browsers
+
+
 
 Multiple profiles
 
 Copy and paste
 
 Secure - data authentication
+
+
 
 
 
@@ -96,19 +100,31 @@ Originally planned to do a credentials stealer
 
 Although this can be used to extract data for individuals, an additional malicious payload was also included - interesting
 
+Flask requests
+
+Learn more about TCP
+
+Server on any OS
+
 ## Part 2.1: Socket Programming
 
 
 
 ## Part 2.2: Securing the Stream with End to End Encryption
 
-
+RSA max size
 
 Hybrid end to end encryption
 
 Explain AES-GCM mode - stream cipher, Netflix
 
 Tags: networking, encryption, socket programming, spyware
+
+## Part 2.3: Remote
+
+localhost, local ip of server, portforwarding public ip
+
+
 
 # Conclusion
 
@@ -131,6 +147,10 @@ Apply many concepts learned from course
 
 Rewarding
 
+Reliance on autofill features for convenience - don't realise how insecure they could be
+
+Use password managers
+
 # Demo and Testing
 
 Designed
@@ -144,6 +164,37 @@ Remote - server and client
 
 
 Good faith policy
+
+**Extraction - Alvin**
+
+exe and python both worked (before remote was implemented)
+
+
+
+**Socket test - Jane**
+
+```python
+# SERVER
+import socket
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_host = socket.gethostbyname(socket.gethostname())
+server.bind((server_host, 4813))
+server.listen(1)
+while True:
+  client, address = server.accept()
+  print(f'[CONNECTED]: {address}')
+  client.send(b"Please don't ddos me")
+
+# CLIENT
+import socket
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.connect((PUBLIC_IP, 4813))
+print(server.recv(20))
+```
+
+
+
+Demo - both extraction and remote with dummy data
 
 # Sources
 
@@ -161,7 +212,7 @@ https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-d
 
 
 
-Tags: cryptography, reverse engineering, 
+Tags: cryptography, reverse engineering, cyber security
 
 
 
@@ -172,8 +223,8 @@ Todo:
 - Different nonce for socket
 - See if GMAC validation works for socket communication - file names created - don't want this to be tampered with if intercepted
 - Code review
-- Separate remote branch
-- Update README
+- Merge remote branch into main, add separate branch for no remote
+- Update README - KrwmTools directory
 
 
 
