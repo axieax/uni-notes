@@ -54,7 +54,22 @@ Having successfully extracted credentials from Google Chrome, I revisited the di
 
 ## Part 1.4: Extension to different Chromium browsers
 
+Having successfully extracted these sensitive data from Google Chrome, I wanted to experiment on my included Microsoft Edge browser as well, since I knew it was also Chromium-based and would probably follow a similar method of data storage and encryption. I was able to similarly extract my Edge data by finding and altering the browser path in my code. I then tried installing the [most popular Chromium browsers](https://www.zdnet.com/pictures/all-the-chromium-based-browsers/), manually locating their %APPDATA% path and iterating through all such paths in my program, expecting a similar result to Google Chrome and Microsoft Edge. However, I found that there were several inconsistencies between different Chromium browsers in data storage methods as well as which specific data was encrypted. For example,
 
+- Some browsers stored the same fields in ciphertext and others in plaintext
+  - e.g. Credentials url and username?
+- Some files were missing or temporary for certain browsers
+  - e.g. Blisk
+- Some tables didn't exist in sqlite database files for certain browsers
+  - e.g. 
+
+Furthermore, I found that some browsers supported multiple profiles with user-specific data stored under each profile, while other browsers such as Opera and Opera GX stored this data in a centralised location along with other browser configuration files. However, by further examining the raw data extracted from each browser's sqlite3 database, I was able to generalise my program and successfully extract data from all of these browsers. 
+
+
+
+Adapt code to be general for all Chromium browsers
+
+Edge - test differences to Chrome
 
 Multiple profiles
 
@@ -76,25 +91,24 @@ Extracting the data took significantly longer than anticipated, <-- actually jus
 
 
 
-AES MODE, DPAPI
 
-## Reverse engineering the Chromium Source Code
-
-
-
- 
-
-Tags: reverse engineering, os, data authentication (DPAPI)
-
-## Data Extraction
-
-
-
-Multiple browsers - different encryption schemes, data storage
-
-Tags: sql, decryption
 
 # Part 2: Sending the Data to a Remote Server
+
+Since I had originally planned to do a credentials stealer, I wanted to experiment with sending the data to a remote server as well, even though I have easily spent more than 50 hours on the first part already. Despite only initially planning to simply send the decrypted data to a server on localhost, I pushed myself to experiment with socket programming and set up a secure end-to-end encryption to a remote server. I found that setting up a Flask server and using the requests module to send the extracted data to the server only took a few minutes to set up, but was rather slow when sending the data. I remembered learning about TCP (Transmission Control Protocol) from the forensics extension topic, which could be used for server-client communication. Doing some additional research, I found that I could use Python to create a socket connection between the two processes, and send the data through the TCP connection created. As a topic I was interested in learning about, I decided to learn and implement socket programming in my project. I also switched from an attacker to a defender mindset, spending many hours devising a method of securing the stream of data being sent from the client to the server as I did not want the extracted data to be intercepted and read by an attacker.
+
+My original implementation featured encrypting the data with a RSA cipher, generating a RSA keypair on the server and sending the public key to the client, who could then encrypt anything they wanted to send back to the server using the public key. By doing so, only the server with the private key could decrypt the message. However, I found several issues with this approach, including:
+
+- A very long decryption process, especially for large amounts of data (the server would still be receiving and decrypting data 20 to 30 seconds after the client had finished encrypting and sending all their data over the socket)
+- Messages had to be broken up into blocks to be encrypted and decrypted before being joined together due to the maximum plaintext length limited by the cipher (same length as the key in bytes)
+
+Researching alternative methods, I found that symmetric ciphers are generally faster than asymmetric ones like the RSA, especially for encrypting and decrypting large amounts of data, with no theoretical limit to the maximum plaintext length. However, some ciphers required a padding to ensure that the plaintext is a multiple of a particular block size, such as the AES-GCM cipher I decided to use, which has a block size of 16 bytes. Interestingly, even though this was the same cipher used by Chromium browsers to encrypt sensitive data, it was also one of the more secure ciphers I discovered through my research. 
+
+
+
+
+
+Extension: secure end to end encryption
 
 Originally planned to do a credentials stealer
 
@@ -102,7 +116,7 @@ Although this can be used to extract data for individuals, an additional malicio
 
 Flask requests
 
-Learn more about TCP
+Learn more about TCP - nmap for scanning open tcp ports to learn more about ip addresses
 
 Server on any OS
 
@@ -120,13 +134,19 @@ Explain AES-GCM mode - stream cipher, Netflix
 
 Tags: networking, encryption, socket programming, spyware
 
-## Part 2.3: Remote
+## Part 2.3: Remote Connection
 
 localhost, local ip of server, portforwarding public ip
 
 
 
 # Conclusion
+
+Exploit DPAPI vulnerability
+
+
+
+
 
 Security is only as strong as its weakest link https://security.stackexchange.com/questions/230137/did-changes-in-google-chrome-80-weaken-cookie-and-password-encryption
 
@@ -212,7 +232,7 @@ https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-d
 
 
 
-Tags: cryptography, reverse engineering, cyber security
+Tags: cryptography, reverse engineering, cyber security, SQL, os?
 
 
 

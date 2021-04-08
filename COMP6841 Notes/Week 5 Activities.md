@@ -1,5 +1,9 @@
 # Community
 
+## Recharge
+
+To avoid burnouts, I play musical instruments to destress myself between coding or study sessions, especially when I'm stuck on a problem. I find this very effective in taking my mind off things and allowing me to regain focus for many long hours of work at a time. 
+
 
 
 # Security Engineering

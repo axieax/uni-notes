@@ -233,7 +233,9 @@ What I've done since:
 
 
 
+https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-606d3829e35bce2452179fe5
 
+https://www.openlearning.com/u/zenneranderath-qojkj1/blog/SecurityEverywhereHumanError#comment-606db84ec212bd40dc33e2ff
 
 
 

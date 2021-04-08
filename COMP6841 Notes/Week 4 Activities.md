@@ -4,7 +4,9 @@
 
 ## Bonzi Buddy, an Insider
 
-BonziBuddy was a multi-purpose desktop virtual assistant which could perform tasks such as sharing jokes and facts, managing downloads, singing songs and talking to the user. Not only was it infamous as one of the most annoying apps to have ever been created, but was also controversial in its secondary role of being spyware and adware. 
+BonziBuddy was a multi-purpose desktop virtual assistant which could perform tasks such as sharing jokes and facts, managing downloads, singing songs and talking to the user. Not only was it infamous as one of the most annoying apps to have ever been created, but was also controversial in its secondary role of being spyware and adware.  This example of a trojan horse can also be thought of as an insider attack, where it was originally widely used and trusted as a desktop assistant by many individuals until it was discovered to have a malicious payload. o
+
+Law suit - taken off
 
 ![Bonzi Buddy.png](https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Bonzi_Buddy.png/300px-Bonzi_Buddy.png)
 
