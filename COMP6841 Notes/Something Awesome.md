@@ -95,18 +95,32 @@ Extracting the data took significantly longer than anticipated, <-- actually jus
 
 # Part 2: Sending the Data to a Remote Server
 
+## Part 2.1: Socket Programming
+
 Since I had originally planned to do a credentials stealer, I wanted to experiment with sending the data to a remote server as well, even though I have easily spent more than 50 hours on the first part already. Despite only initially planning to simply send the decrypted data to a server on localhost, I pushed myself to experiment with socket programming and set up a secure end-to-end encryption to a remote server. I found that setting up a Flask server and using the requests module to send the extracted data to the server only took a few minutes to set up, but was rather slow when sending the data. I remembered learning about TCP (Transmission Control Protocol) from the forensics extension topic, which could be used for server-client communication. Doing some additional research, I found that I could use Python to create a socket connection between the two processes, and send the data through the TCP connection created. As a topic I was interested in learning about, I decided to learn and implement socket programming in my project. I also switched from an attacker to a defender mindset, spending many hours devising a method of securing the stream of data being sent from the client to the server as I did not want the extracted data to be intercepted and read by an attacker.
+
+## Part 2.2: Securing the Stream with End-to-End Encryption
 
 My original implementation featured encrypting the data with a RSA cipher, generating a RSA keypair on the server and sending the public key to the client, who could then encrypt anything they wanted to send back to the server using the public key. By doing so, only the server with the private key could decrypt the message. However, I found several issues with this approach, including:
 
 - A very long decryption process, especially for large amounts of data (the server would still be receiving and decrypting data 20 to 30 seconds after the client had finished encrypting and sending all their data over the socket)
 - Messages had to be broken up into blocks to be encrypted and decrypted before being joined together due to the maximum plaintext length limited by the cipher (same length as the key in bytes)
 
-Researching alternative methods, I found that symmetric ciphers are generally faster than asymmetric ones like the RSA, especially for encrypting and decrypting large amounts of data, with no theoretical limit to the maximum plaintext length. However, some ciphers required a padding to ensure that the plaintext is a multiple of a particular block size, such as the AES-GCM cipher I decided to use, which has a block size of 16 bytes. Interestingly, even though this was the same cipher used by Chromium browsers to encrypt sensitive data, it was also one of the more secure ciphers I discovered through my research. 
+Researching alternative methods, I found that symmetric ciphers are generally faster than asymmetric ones like the RSA, especially for encrypting and decrypting large amounts of data, with no theoretical limit to the maximum plaintext length. However, some ciphers required a padding to ensure that the plaintext is a multiple of a particular block size, such as the AES-GCM cipher I decided to use, which has a block size of 16 bytes. Interestingly, even though this was the same cipher used by Chromium browsers to encrypt sensitive data, it was also one of the more secure ciphers I discovered through my research, as explained before. Keep in mind that KrwmTools did not exploit a vulnerability with the AES-GCM cipher, but rather the weakest security link in order to extract the encryption key.
+
+I implemented a hybrid cryptosystem to encrypt the socket communication. The key idea behind the key exchange is that the server first sends the client the RSA public key so that the client can generate an AES key, encrypt it with the public key and send it back to the server. Since the server holds the corresponding RSA private key, only they can decrypt it to obtain the AES key. From then on, the key for the symmetric AES cipher can be used to encrypt and decrypt data to be sent from the client to the server. Since the server needs to know how many bytes to read from the client socket in order to receive the ciphertext, the client needs to first send a header containing the length of the ciphertext in bytes, as well as the nonce used to encrypt the message with the AES-GCM cipher. I chose to further encrypt this header using the RSA public key as an extra layer of security.
+
+> image of transmission process
+
+## Part 2.3: Remote Connection
 
 
 
 
+
+
+
+Hybrid encryption scheme
 
 Extension: secure end to end encryption
 
