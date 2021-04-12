@@ -121,7 +121,7 @@ print(server.recv(20))
 
 I chose not to include the data extraction part of KrwmTools for testing the remote socket connection due to privacy concerns involving sensitive data. However, testing that both parts worked assured me that both of these parts could be combined to achieve my desired malicious program for extracting Chromium data. A demo of the finished product can be found below, demonstrating successful data extraction from my Windows machine (client) to my MacBook (server) across separate WiFi networks.
 
-![remote_demo](images/remote_demo-1618214301350.gif)
+![remote_demo](images/remote_demo.gif)
 
 # Conclusion
 
