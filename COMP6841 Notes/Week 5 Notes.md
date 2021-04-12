@@ -21,6 +21,7 @@ Optical hard drive data forensics:
 - Data written sequentially, slow random
 - File deletion - marked as deleted - data isn't wiped
 - Byte for byte copy (see everything on hard drive) vs logical file extraction (what's visible to the user)
+- sudo mount to mount dump
 - Can find deleted data using ghex
 - Magic bytes for different file formats (header and footer) for file command
   - scalpel to grep for magic bytes
@@ -29,7 +30,8 @@ Optical hard drive data forensics:
 Network forensics:
 
 - Wireshark
-- IP Addresses, User-Agent (in HTTP), Accept-Charset, Time to live (device), Header checksum
+- IP Addresses, User-Agent (in HTTP), Accept-Charset (device), Time to live (device), Header checksum (man in the middle attacks might forget to change this)
+- Protocols - TCP, SYN, ACK, FIN, HTTP
 
  
 

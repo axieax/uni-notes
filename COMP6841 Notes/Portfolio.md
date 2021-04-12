@@ -226,8 +226,22 @@ Learning about AES and other encryption standards this week, I spent about an ho
 
 What I've done since:
 
-- SA blog
-- Bonzi Buddy
+- SA blog, reflection
+- Bonzi Buddy https://www.openlearning.com/u/axie/blog/BonzibuddyTheInsider/
+- https://www.openlearning.com/u/axie/blog/HashCracking/ - end
+- 
+
+Community:
+
+https://flipgrid.com/a43486a3
+
+https://flipgrid.com/48061188
+
+https://flipgrid.com/1506ed58
+
+
+
+https://www.openlearning.com/unswcourses/courses/sec-21t1/activities/hash-cracking?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-607466f821e9cc66ec425339
 
 
 

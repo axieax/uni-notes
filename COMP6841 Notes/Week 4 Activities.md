@@ -2,11 +2,9 @@
 
 ## Security Everywhere
 
-## Bonzi Buddy, an Insider
+## BonziBuddy, an Insider
 
-BonziBuddy was a multi-purpose desktop virtual assistant which could perform tasks such as sharing jokes and facts, managing downloads, singing songs and talking to the user. Not only was it infamous as one of the most annoying apps to have ever been created, but was also controversial in its secondary role of being spyware and adware.  This example of a trojan horse can also be thought of as an insider attack, where it was originally widely used and trusted as a desktop assistant by many individuals until it was discovered to have a malicious payload. o
-
-Law suit - taken off
+BonziBuddy is a multi-purpose desktop virtual assistant which could perform tasks such as sharing jokes and facts, managing downloads, singing songs and talking to the user. Not only was it infamous as one of the most annoying apps to have ever been created, but was also controversial in its secondary role of being spyware and adware. This example of a trojan horse can also be thought of as an insider attack, where it was originally widely used and trusted as a desktop assistant by many individuals until it was discovered to have a malicious payload. This meant that it was able to infiltrate a computer as an insider and avoid detection for its malicious payload. As such, lawsuits were filed against it in 2003 due to the misleading nature of its software, causing it to be discontinued in 2004. Although the website was up until 2008 so the software could still be downloaded, the servers have been taken down a long time ago so the spyware part of the program is finally redundant. 
 
 ![Bonzi Buddy.png](https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Bonzi_Buddy.png/300px-Bonzi_Buddy.png)
 
