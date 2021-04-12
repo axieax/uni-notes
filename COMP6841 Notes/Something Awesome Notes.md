@@ -66,7 +66,7 @@ Why choose Windows? most popular
 - Alvin - tested extracted data
   - Doesn't store autofilled data - uses Dashlane instead
   - Extracted some basic information which can be used to build a profile
-- 
+- Jane - socket connection
 
 
 

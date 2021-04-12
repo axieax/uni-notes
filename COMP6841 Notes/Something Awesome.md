@@ -56,46 +56,21 @@ Having successfully extracted credentials from Google Chrome, I revisited the di
 
 Having successfully extracted these sensitive data from Google Chrome, I wanted to experiment on my included Microsoft Edge browser as well, since I knew it was also Chromium-based and would probably follow a similar method of data storage and encryption. I was able to similarly extract my Edge data by finding and altering the browser path in my code. I then tried installing the [most popular Chromium browsers](https://www.zdnet.com/pictures/all-the-chromium-based-browsers/), manually locating their %APPDATA% path and iterating through all such paths in my program, expecting a similar result to Google Chrome and Microsoft Edge. However, I found that there were several inconsistencies between different Chromium browsers in data storage methods as well as which specific data was encrypted. For example,
 
-- Some browsers stored the same fields in ciphertext and others in plaintext
-  - e.g. Credentials url and username?
+- Some browsers store certain fields in plaintext, while other browsers may choose to encrypt the same fields instead
+  - e.g. Google Chrome stores autofill data in plaintext while Microsoft Edge stores them in ciphertext
 - Some files were missing or temporary for certain browsers
-  - e.g. Blisk
-- Some tables didn't exist in sqlite database files for certain browsers
-  - e.g. 
+  - e.g. Epic Privacy Browser deletes cookies and history upon exit
+- Some browsers had different sqlite database structures
+  - e.g. Epic Privacy Browser does not have the autofill_profile_addresses table
+  - Blisk does not have a city column for the autofill_profile_addresses table
 
-Furthermore, I found that some browsers supported multiple profiles with user-specific data stored under each profile, while other browsers such as Opera and Opera GX stored this data in a centralised location along with other browser configuration files. However, by further examining the raw data extracted from each browser's sqlite3 database, I was able to generalise my program and successfully extract data from all of these browsers. 
-
-
-
-Adapt code to be general for all Chromium browsers
-
-Edge - test differences to Chrome
-
-Multiple profiles
-
-Copy and paste
-
-Secure - data authentication
-
-
-
-
-
-Doing some research, it seemed that extracting data from Windows machines would be the simplest out of the operating systems, utilising API calls to decrypt the data. However, it was more
-
-
-
-
-
-Extracting the data took significantly longer than anticipated, <-- actually just decrypting
-
-
-
-
+Furthermore, I found that some browsers supported multiple profiles with user-specific data stored under each profile, while other browsers such as Opera and Opera GX stored this data in a centralised location along with other browser configuration files. However, by further examining the raw data extracted from each browser's sqlite3 database, I was able to generalise my program and successfully extract data from all Chromium browsers. 
 
 ## Part 1.5: Testing extraction
 
+To test that data had been successfully extracted, I initially ran the program on several of my own Google Chrome profiles and on Microsoft Edge, providing me with expected results. I then downloaded and tried the other Chromium browsers, which worked as well. I also created a separate profile on my Windows PC to test that it works with multiple users on the same machine and to create the demo below, taking the time to make sure there is more stored data across the browsers. I have also tested the local data extraction of my program on the Windows partition of my MacBook, my parent's computers, as well as two of my friends, with their explicit permission of course. One of my friends was very surprised to see his many years of stored secrets be revealed right before his very eyes by simply running an .exe file. The other was a more security-minded peer who used Dashline as his password manager and a VPN when surfing the web. He mentioned that his autofill (such as name, address, phone numbers) and web history data were still exposed, which an attacker could still build a profile from and could possibly do social engineering with the information. 
 
+![Local Demo](images/local_demo.gif)
 
 # Part 2: Sending the Data to a Remote Server
 
@@ -110,11 +85,11 @@ My original implementation featured encrypting the data with a RSA cipher, gener
 - A very long decryption process, especially for large amounts of data (the server would still be receiving and decrypting data 20 to 30 seconds after the client had finished encrypting and sending all their data over the socket)
 - Messages had to be broken up into blocks to be encrypted and decrypted before being joined together due to the maximum plaintext length limited by the cipher (same length as the key in bytes)
 
-Researching alternative methods, I found that symmetric ciphers are generally faster than asymmetric ones like the RSA, especially for encrypting and decrypting large amounts of data, with no theoretical limit to the maximum plaintext length. However, some ciphers required a padding to ensure that the plaintext is a multiple of a particular block size, such as the AES-GCM cipher I decided to use, which has a block size of 16 bytes. Interestingly, even though this was the same cipher used by Chromium browsers to encrypt sensitive data, it was also one of the more secure ciphers I discovered through my research, as explained before. Keep in mind that KrwmTools did not exploit a vulnerability with the AES-GCM cipher, but rather the weakest security link in order to extract the encryption key.
+Researching alternative methods, I found that symmetric ciphers are generally faster than asymmetric ones like the RSA, especially for encrypting and decrypting large amounts of data, with no theoretical limit to the maximum plaintext length. However, some ciphers required a padding to ensure that the plaintext is a multiple of a particular block size, such as the AES-GCM cipher I decided to use, which has a block size of 16 bytes. Interestingly, even though this was the same cipher used by Chromium browsers to encrypt sensitive data, it was also one of the more secure ciphers I discovered through my research, which is also used by Netflix to encrypt and authenticate messages. Keep in mind that KrwmTools did not exploit a vulnerability with the AES-GCM cipher, but rather the weakest security link in order to extract the encryption key.
 
 I implemented a hybrid cryptosystem to encrypt the socket communication. The key idea behind the key exchange is that the server first sends the client the RSA public key so that the client can generate an AES key, encrypt it with the public key and send it back to the server. Since the server holds the corresponding RSA private key, only they can decrypt it to obtain the AES key. From then on, the key for the symmetric AES cipher can be used to encrypt and decrypt data to be sent from the client to the server. Since the server needs to know how many bytes to read from the client socket in order to receive the ciphertext, the client needs to first send a header containing the length of the ciphertext in bytes, as well as the nonce used to encrypt the message with the AES-GCM cipher. I chose to further encrypt this header using the RSA public key as an extra layer of security.
 
-> image of transmission process
+<img src="images/socket.jpg" alt="socket" style="zoom:50%;" />
 
 ## Part 2.3: Remote connection
 
@@ -122,7 +97,7 @@ I was able to successfully set up a socket between a server and a client on the 
 
 ## Part 2.4: Testing remote socket connection
 
-I used the following code to test that I could successfully establish a remote socket connection with a client. I started up the server script and gave two of my friends the client script to be run, replacing PUBLIC_IP with my actual public IP address. On the server side, I was able to see that a TCP connection with them had been established, and they were also able to receive my message. Furthermore, I have tested that my actual KrwmTools server script works on Windows, macOS as well as Linux. 
+I have tested establishing a successful socket connection on localhost on my Windows machine, and over the same WiFi network with the server on my MacBook. To test that I have correctly set up port forwarding, I used the following code to test that I could successfully establish and send data across a remote socket connection with one of my friends. I started up the server script and gave her the client script to be run, replacing PUBLIC_IP with my actual public IP address. On the server side, I was able to see that a TCP connection with them had been established, and they were also able to receive my message. Furthermore, I have tested that my actual KrwmTools server script works on Windows, macOS as well as Linux. 
 
 ```python
 # SERVER
@@ -144,122 +119,43 @@ server.connect((PUBLIC_IP, 4813))
 print(server.recv(20))
 ```
 
+I chose not to include the data extraction part of KrwmTools for testing the remote socket connection due to privacy concerns involving sensitive data. However, testing that both parts worked assured me that both of these parts could be combined to achieve my desired malicious program for extracting Chromium data. A demo of the finished product can be found below, demonstrating successful data extraction from my Windows machine (client) to my MacBook (server) across separate WiFi networks.
 
-
-
-
-Although this can be used to extract data for individuals, an additional malicious payload was also included - interesting
-
-Server on any OS
-
-## Part 2.1: Socket Programming
-
-
-
-## Part 2.2: Securing the Stream with End to End Encryption
-
-RSA max size
-
-Hybrid end to end encryption
-
-Explain AES-GCM mode - stream cipher, Netflix
-
-Tags: networking, encryption
-
-## Part 2.3: Remote Connection
-
-localhost, local ip of server, portforwarding public ip
-
-
+![remote_demo](images/remote_demo-1618214301350.gif)
 
 # Conclusion
 
-Security is only as strong as the weakest link. As mentioned, KrwmTools is able to decrypt the stored passwords by locating the encrypted encryption key and exploiting a vulnerability with Window's DPAPI which could bypass user authentication to decrypt the key. 
+Security is only as strong as its weakest link. KrwmTools is able to decrypt the stored passwords by locating the encrypted encryption key and exploiting a zero-day vulnerability with Window's DPAPI which could bypass user authentication to decrypt the key if the user is signed into their computer. In summary, I
 
+- Performed active reconnaissance on the data storage location for Chromium browsers to find files of interest
+- Used SQL queries to find tables of interest and extract the raw stored data
+- Reverse engineered the open-source Chromium source code to learn about how this data was encrypted
+- Wrote a general Python program to extract credentials, autofill, credit card and web history data from all Chromium browsers
+- Implemented a remote socket connection to send the extracted data over the Internet to a centralised server
+- Packaged the Python program into a Windows executable to be run on machines without Python installed
 
-
-
-
-Security is only as strong as its weakest link https://security.stackexchange.com/questions/230137/did-changes-in-google-chrome-80-weaken-cookie-and-password-encryption
-
-Easy to extract encryption key
-
-Interesting findings when examining the source code:
-
-- How Chrome stores passwords for different operating systems using provided os user storage mechanism
-  - https://source.chromium.org/chromium/chromium/src/+/master:docs/security/faq.md;l=612?q=dpapi&ss=chromium%2Fchromium%2Fsrc
-
-
-
-Windows executable for those without Python installed
-
-Environment variables for socket channels?
-
-Apply many concepts learned from course
-
-Rewarding
-
-Reliance on autofill features for convenience - don't realise how insecure they could be
-
-Use password managers
-
-# Demo and Testing
-
-Designed
-
-
-
-Main - just client (no socket)
-
-Remote - server and client
-
-
-
-Good faith policy
-
-**Extraction - Alvin**
-
-exe and python both worked (before remote was implemented)
-
-
-
-**Socket test - Jane**
-
-
-
-
-
-Demo - both extraction and remote with dummy data
+Through this project, I was able to apply several concepts learned from the course and explore topics such as cryptography in greater detail. I am glad to be able to learn more about the Windows Operating System, networking and socket programming as well. Chromium's data storage scheme demonstrates the tradeoff between security and convenience. As mentioned in the [source code](https://source.chromium.org/chromium/chromium/src/+/master:docs/security/faq.md;l=612?q=dpapi&ss=chromium%2Fchromium%2Fsrc), Chromium browsers rely on the operating system's user storage mechanism and stores the encrypted data locally. The storage location for the encryption key is easily accessible and can be decrypted relatively straightforwardly on Windows and Linux, while the key is stored on the user's keychain in macOS, which is inaccessible without the user inputting the keychain password. In general, Chromium browsers should not store the encryption key locally and users should use a password manager for storing sensitive data instead. Storing the encryption key (and data optionally as well) on a remote server would be safer, where the user's hashed master password can be used to authenticate them remotely and allow access to their stored data. This could be through the browser's own authentication system (e.g. Google account for Chrome and Microsoft account for Edge), or through an integration with a third-party password manager such as 1Password, Dashlane or the open-source Bitwarden. This provides a reasonable balance between convenience and security since users would normally need to provide a password anyways in order to see their stored credentials from the browser directly. 
 
 # Sources
 
-[Data Protection API — Threat Hunter Playbook](https://threathunterplaybook.com/library/windows/data_protection_api.html)
+- Rodriguez, R. (2020). [Data Protection API — Threat Hunter Playbook](https://threathunterplaybook.com/library/windows/data_protection_api.html).
+- NAI Labs, Network Associates, Inc.(2001). [Windows Data Protection](https://docs.microsoft.com/en-us/previous-versions/ms995355(v=msdn.10)).
+- Wong, D. (2016). [Breaking https' AES-GCM (or a part of it)](https://cryptologie.net/article/361/breaking-https-aes-gcm-or-a-part-of-it/).
+- Joux, A. (n.d.). [Authentication Failures in NIST version of GCM](https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf).
+- Chromium. (n.d.). [Chromium source code](https://source.chromium.org/chromium/chromium/src).
+- Lilly, P. (2020). [Google Chrome AES-256 Password Encryption Proves No Match For Crafty Malware Devs](https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-devs).
+- Stewart, R., Long. S., Gallatin, D., Gutarin, A., & Livengood, E. (2016). [Protecting Netflix Viewing Privacy at Scale](https://netflixtechblog.com/protecting-netflix-viewing-privacy-at-scale-39c675d88f45).
+- Hoffman, C. (2020). [How Safe Are Password Managers](https://www.howtogeek.com/445274/how-safe-are-password-managers/).
 
-[Windows Data Protection | Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/ms995355(v=msdn.10))
-
-[Breaking https' AES-GCM (or a part of it) (cryptologie.net)](https://cryptologie.net/article/361/breaking-https-aes-gcm-or-a-part-of-it/) - David Wong 2016
-
-[JOUX - Authentication Failures in NIST version of GCM](https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf)
-
-[Chromium source code](https://source.chromium.org/chromium/chromium/src)
-
-https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-devs
-
-
-
-Tags: cryptography, reverse engineering, cyber security, SQL, os?, socket programming, spyware
+Tags: cryptography, reverse engineering, cyber security, SQL, os?, socket programming, spyware, networking, attacker vs defender mindset
 
 
 
 Todo:
 
 - Finish this
-- Video Demo
-- Different nonce for socket
-- See if GMAC validation works for socket communication - file names created - don't want this to be tampered with if intercepted
 - Code review
-- Merge remote branch into main, add separate branch for no remote
-- Update README - KrwmTools directory
+- Put writeup into repo
 
 
 

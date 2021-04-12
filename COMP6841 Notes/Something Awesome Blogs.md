@@ -64,5 +64,19 @@ My CPU arrived today, which was surprising since Amazon said the expected delive
 
 
 
+# Reflection
+
+Apply many concepts learned from course
+
+Rewarding
+
+Good faith policy
+
+
+
+
+
+
+
 
 
