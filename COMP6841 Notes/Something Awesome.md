@@ -2,7 +2,7 @@
 
 # Introduction and Rationale
 
-For my Something Awesome security project, I decided to build a tool kit aimed at extracting sensitive data from Chromium browsers. My project was inspired by the [LaZagne Project](https://github.com/AlessandroZ/LaZagne), an open-source credentials recovery application which can be used to extract browser credentials as well as other passwords stored on a Windows, Mac OS and Linux computers. KrwmTools focuses on Windows machines, extracting credentials, autofill information (fields, profiles, addresses, names, emails, phone numbers), credit card information, cookies and history (search terms and web history) from the ten most popular Chromium browsers, which could help build a profile for the users on a compromised computer. As detailed in my initial proposal, I had originally planned to create a password stealer only for the Google Chrome browser, working on all three operating systems. However, I decided to shift my focus to building a multi-purpose tool after realising the potential of other sensitive data which could be extracted as well, especially since there doesn't seem to be a similar utility available yet (on Google at least). My project is split into two sections: extracting the data, and securely sending the extracted data to a remote server (optional spyware functionality). 
+For my Something Awesome security project, I decided to build a tool kit aimed at extracting sensitive data from Chromium browsers. My project was inspired by the [LaZagne Project](https://github.com/AlessandroZ/LaZagne), an open-source credentials recovery application which can be used to extract browser credentials as well as other passwords stored on a Windows, macOS and Linux computers. KrwmTools focuses on Windows machines, extracting credentials, autofill information (fields, profiles, addresses, names, emails, phone numbers), credit card information, cookies and history (search terms and web history) from the ten most popular Chromium browsers, which could help build a profile for the users on a compromised computer. As detailed in my initial proposal, I had originally planned to create a password stealer only for the Google Chrome browser, working on all three operating systems. However, I decided to shift my focus to building a multi-purpose tool after realising the potential of other sensitive data which could be extracted as well, especially since there doesn't seem to be a similar utility available yet (on Google at least). My project is split into two sections: extracting the data, and securely sending the extracted data to a remote server (optional spyware functionality). 
 
 > Git repository for source code and packaged Windows executable available at [https://github.com/axieax/krwm-tools](https://github.com/axieax/krwm-tools)
 
@@ -93,13 +93,17 @@ Extracting the data took significantly longer than anticipated, <-- actually jus
 
 
 
+## Part 1.5: Testing extraction
+
+
+
 # Part 2: Sending the Data to a Remote Server
 
-## Part 2.1: Socket Programming
+## Part 2.1: Socket programming
 
 Since I had originally planned to do a credentials stealer, I wanted to experiment with sending the data to a remote server as well, even though I have easily spent more than 50 hours on the first part already. Despite only initially planning to simply send the decrypted data to a server on localhost, I pushed myself to experiment with socket programming and set up a secure end-to-end encryption to a remote server. I found that setting up a Flask server and using the requests module to send the extracted data to the server only took a few minutes to set up, but was rather slow when sending the data. I remembered learning about TCP (Transmission Control Protocol) from the forensics extension topic, which could be used for server-client communication. Doing some additional research, I found that I could use Python to create a socket connection between the two processes, and send the data through the TCP connection created. As a topic I was interested in learning about, I decided to learn and implement socket programming in my project. I also switched from an attacker to a defender mindset, spending many hours devising a method of securing the stream of data being sent from the client to the server as I did not want the extracted data to be intercepted and read by an attacker.
 
-## Part 2.2: Securing the Stream with End-to-End Encryption
+## Part 2.2: Securing the stream with end-to-end encryption
 
 My original implementation featured encrypting the data with a RSA cipher, generating a RSA keypair on the server and sending the public key to the client, who could then encrypt anything they wanted to send back to the server using the public key. By doing so, only the server with the private key could decrypt the message. However, I found several issues with this approach, including:
 
@@ -112,25 +116,39 @@ I implemented a hybrid cryptosystem to encrypt the socket communication. The key
 
 > image of transmission process
 
-## Part 2.3: Remote Connection
+## Part 2.3: Remote connection
+
+I was able to successfully set up a socket between a server and a client on the same computer through the same TCP port on localhost. However, I then wanted to try to establish a socket connection to another computer on the same WiFi network. To achieve this, I modified my socket script on the client side so that the host address of the server pointed to my computer's local IP address instead of localhost. This took several tries after scanning for the expected open TCP port using `nmap` on both devices, enabling me to learn more about IP addresses and localhost in the process. However, manually altering the host address for a remote client script each time seemed rather inconvenient, so I tried to see if I could set up an open TCP port on my public IP address pointing to a static local IP address for the device listening for client connections. By port forwarding, all clients around the world can setup a socket and communicate with the same central server, which can receive and store all the extracted data for each client. 
+
+## Part 2.4: Testing remote socket connection
+
+I used the following code to test that I could successfully establish a remote socket connection with a client. I started up the server script and gave two of my friends the client script to be run, replacing PUBLIC_IP with my actual public IP address. On the server side, I was able to see that a TCP connection with them had been established, and they were also able to receive my message. Furthermore, I have tested that my actual KrwmTools server script works on Windows, macOS as well as Linux. 
+
+```python
+# SERVER
+import socket
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_host = socket.gethostbyname(socket.gethostname())
+server.bind((server_host, 4813))
+server.listen(1)
+while True:
+  client, address = server.accept()
+  print(f'[CONNECTED]: {address}')
+  client.send(b"Please don't ddos me")
+  print(f'[DISCONNECTED]: {address}')
+
+# CLIENT
+import socket
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.connect((PUBLIC_IP, 4813))
+print(server.recv(20))
+```
 
 
 
 
-
-
-
-Hybrid encryption scheme
-
-Extension: secure end to end encryption
-
-Originally planned to do a credentials stealer
 
 Although this can be used to extract data for individuals, an additional malicious payload was also included - interesting
-
-Flask requests
-
-Learn more about TCP - nmap for scanning open tcp ports to learn more about ip addresses
 
 Server on any OS
 
@@ -146,7 +164,7 @@ Hybrid end to end encryption
 
 Explain AES-GCM mode - stream cipher, Netflix
 
-Tags: networking, encryption, socket programming, spyware
+Tags: networking, encryption
 
 ## Part 2.3: Remote Connection
 
@@ -156,7 +174,7 @@ localhost, local ip of server, portforwarding public ip
 
 # Conclusion
 
-Exploit DPAPI vulnerability
+Security is only as strong as the weakest link. As mentioned, KrwmTools is able to decrypt the stored passwords by locating the encrypted encryption key and exploiting a vulnerability with Window's DPAPI which could bypass user authentication to decrypt the key. 
 
 
 
@@ -207,24 +225,7 @@ exe and python both worked (before remote was implemented)
 
 **Socket test - Jane**
 
-```python
-# SERVER
-import socket
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_host = socket.gethostbyname(socket.gethostname())
-server.bind((server_host, 4813))
-server.listen(1)
-while True:
-  client, address = server.accept()
-  print(f'[CONNECTED]: {address}')
-  client.send(b"Please don't ddos me")
 
-# CLIENT
-import socket
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.connect((PUBLIC_IP, 4813))
-print(server.recv(20))
-```
 
 
 
@@ -246,7 +247,7 @@ https://hothardware.com/news/google-chrome-aes-256-password-encryption-malware-d
 
 
 
-Tags: cryptography, reverse engineering, cyber security, SQL, os?
+Tags: cryptography, reverse engineering, cyber security, SQL, os?, socket programming, spyware
 
 
 

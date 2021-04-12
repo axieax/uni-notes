@@ -16,7 +16,7 @@ Checks
   - SQLi
   - MAC
 
-
+Fragment input - e.g. A.write('<sc')A.write('rip')A.write('t>') etc..
 
 
 
