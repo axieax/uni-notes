@@ -228,7 +228,7 @@ Learning about AES and other encryption standards this week, I spent about an ho
 
 <u>Time management</u>
 
-Although I didn't manage to complete as many activities as I wanted to, I ended up spending 134 hours in total since the last checkin, which meant that I spent an average of nearly 5 hours each day just on security over the last four weeks. As mentioned in my [Something Awesome Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/), I managed my time especially well during this period, spending most of my time on my project, which I was able to learn a lot from. Furthermore, as mentioned in the last paragraph of my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), I have justified the use of this time despite the late release of activities which meant I was unable to complete as many activities as I usually would. As such, I believe my time management skills have been very effective and have improved since last time, even with my busy commitments this term mentioned at the end of my [Week 1 Reflection](https://www.openlearning.com/u/axie/blog/Week1Reflection/). Similarly to last time, I found that spending more on each activity I do helps with consolidating my understanding of course content and was the most ideal use of my limited time, through my own practical challenges involving code, as evident in the activities with a star next to them in my breakdown of my 134 hours below:
+Although I didn't manage to complete as many activities as I wanted to, I ended up spending 147 hours in total since the last checkin, which meant that I spent an average of more than 5 hours each day just on security over the last four weeks. As mentioned in my [Something Awesome Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/), I managed my time especially well during this period, spending most of my time on my project, which I was able to learn a lot from. Furthermore, as mentioned in the last paragraph of my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), I have justified the use of this time despite the late release of activities which meant I was unable to complete as many activities as I usually would. As such, I believe my time management skills have been very effective and have improved since last time, even with my busy commitments this term mentioned at the end of my [Week 1 Reflection](https://www.openlearning.com/u/axie/blog/Week1Reflection/). Similarly to last time, I found that spending more on each activity I do helps with consolidating my understanding of course content and was the most ideal use of my limited time, through my own practical challenges involving code, as evident in the activities with a star next to them in my breakdown of my 147 hours below:
 
 - Community Activities (1.5 hours)
   - [Recharge](https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-606d3829e35bce2452179fe5) (30 minutes)
@@ -246,8 +246,18 @@ Although I didn't manage to complete as many activities as I wanted to, I ended 
   - [KrwmTools Program](https://github.com/axieax/krwm-tools) (100 hours)
   - [Project Writeup](https://github.com/axieax/krwm-tools/blob/main/writeup.md) (20 hours)
   - [Project Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/) (2 hours) - a further breakdown of time management for my Something Awesome Project can be found in this reflection throughout
-- [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/) (30 minutes)
-- This portfolio (1.5 hours)
+- Miscellaneous (15 hours)
+  - Week 5 Lectures and Webinar (1.5 hours)
+  - [Case Study 5 Preparation](https://www.openlearning.com/u/axie/blog/CaseStudy5Preparation/) (1 hour)
+  - Week 5 Tutorial (2 hours)
+  - Weekly Quiz 5 (15 minutes)
+  - [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/) (30 minutes)
+  - Week 7 Lectures and Webinar (1 hour)
+  - [Case Study 7 Preparation](https://www.openlearning.com/u/axie/blog/CaseStudy7Preparation/) (3 hours) - 1 hour movie on double speed, 1 hour notes, 1 hour rewriting notes since they got overwritten and deleted
+  - Week 7 Tutorial (2 hours)
+  - Weekly Quiz 7 (15 minutes)
+  - Week 8 Tutorial (2 hours)
+  - This portfolio (1.5 hours)
 
 <u>Communication and Community building</u>
 
@@ -275,7 +285,7 @@ Ethical considerations were a significant part of my Something Awesome Project, 
 
 ## Analysis
 
-Significant examples of analysis I've done since the last checkin are evident in my Something Awesome [Writeup](https://github.com/axieax/krwm-tools/blob/main/writeup.md) (4000 words of extensive analysis) and [Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/). Other examples of extensive analysis can be found in the activities starred from the breakdown above, with notable ones including my design of an efficient algorithm for [Birthday Attack](https://www.openlearning.com/u/axie/blog/BirthdayAttack/), my analysis of length extension attacks and using hashcat for password cracking in [Password Hash Cracking](https://www.openlearning.com/u/axie/blog/HashCracking/), as well as my analysis for [Bitcoin Mining](https://www.openlearning.com/u/axie/blog/BitcoinMining/) where I walked through what I did with an invalid block. Another example of analysis can be found in the first paragraph of my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), which describes what I've learned from Week 5 content and activities. 
+Significant examples of analysis I've done since the last checkin are evident in my Something Awesome [Writeup](https://github.com/axieax/krwm-tools/blob/main/writeup.md) (4000 words of extensive analysis) and [Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/). Other examples of extensive analysis can be found in the activities starred from the breakdown above, with notable ones including my design of an efficient algorithm for [Birthday Attack](https://www.openlearning.com/u/axie/blog/BirthdayAttack/), my analysis of length extension attacks and using hashcat for password cracking in [Password Hash Cracking](https://www.openlearning.com/u/axie/blog/HashCracking/), as well as my analysis for [Bitcoin Mining](https://www.openlearning.com/u/axie/blog/BitcoinMining/) where I walked through what I did with an invalid block. Another example of analysis can be found in the first paragraph of my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), which describes what I've learned from Week 5 content and activities, as well as my [Case Study 7 Preparation](https://www.openlearning.com/u/axie/blog/CaseStudy7Preparation/) with notes on what caused the space mission to fail. 
 
 ## Core and Engineering Activities
 
@@ -292,25 +302,6 @@ As mentioned above, I've put a lot into my Something Awesome Project and have ga
 
 
 
-
-
-
-What I've done since:
-
-- SA blog, reflection
-- Bonzi Buddy https://www.openlearning.com/u/axie/blog/BonzibuddyTheInsider/
-- https://www.openlearning.com/u/axie/blog/HashCracking/ - end
-- 
-
-Community:
-
-
-
-
-
-
-
-https://www.openlearning.com/u/zenneranderath-qojkj1/blog/SecurityEverywhereHumanError#comment-606db84ec212bd40dc33e2ff
 
 
 
