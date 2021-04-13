@@ -224,6 +224,77 @@ Learning about AES and other encryption standards this week, I spent about an ho
 
 # Portfolio Checkin 3
 
+## Professionalism
+
+<u>Time management</u>
+
+Although I didn't complete as many activities as I usually would and wanted to, I ended up spending 132 hours in total since the last checkin, which meant that I spent an average of 4-5 hours each day just on security over the last four weeks. 
+
+
+
+As mentioned in my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), I managed my time very well - only for activities
+
+4 weeks
+
+132 hours
+
+- Community Activities (1.5 hours)
+  - Recharge (30 minutes)
+  - Security Everywhere Week 4 (30 minutes)
+  - Security Everywhere Week 5 (30 minutes)
+- Core and Engineering Activities (5.5 hours)
+  - Password Hash Cracking (2 hours)
+  - Birthday Attack (2 hours)
+  - Podcast: Bit Coin and Proof of Work (30 minutes)
+  - Bitcoing Mining (1 hour)
+- Extension Activities (2.5 hours)
+  - Forensics (2.5 hours)
+- Something Awesome (122.5 hours)
+  - My final PC part has arrived - time to start my project! (30 minutes)
+  - Program (100 hours)
+  - Writeup (20 hours)
+  - Reflection (2 hours)
+
+
+
+
+
+
+
+<u>Communication</u>
+
+
+
+<u>Community building</u>
+
+
+
+<u>Ethical behaviour</u>
+
+
+
+## Analysis
+
+
+
+## Core and Engineering Activities
+
+
+
+## Extension Activities
+
+
+
+## Something Awesome
+
+
+
+
+
+
+
+
+
 What I've done since:
 
 - SA blog, reflection
