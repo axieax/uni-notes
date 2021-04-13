@@ -228,66 +228,66 @@ Learning about AES and other encryption standards this week, I spent about an ho
 
 <u>Time management</u>
 
-Although I didn't complete as many activities as I usually would and wanted to, I ended up spending 132 hours in total since the last checkin, which meant that I spent an average of 4-5 hours each day just on security over the last four weeks. 
-
-
-
-As mentioned in my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), I managed my time very well - only for activities
-
-4 weeks
-
-132 hours
+Although I didn't manage to complete as many activities as I wanted to, I ended up spending 134 hours in total since the last checkin, which meant that I spent an average of nearly 5 hours each day just on security over the last four weeks. As mentioned in my [Something Awesome Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/), I managed my time especially well during this period, spending most of my time on my project, which I was able to learn a lot from. Furthermore, as mentioned in the last paragraph of my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), I have justified the use of this time despite the late release of activities which meant I was unable to complete as many activities as I usually would. As such, I believe my time management skills have been very effective and have improved since last time, even with my busy commitments this term mentioned at the end of my [Week 1 Reflection](https://www.openlearning.com/u/axie/blog/Week1Reflection/). Similarly to last time, I found that spending more on each activity I do helps with consolidating my understanding of course content and was the most ideal use of my limited time, through my own practical challenges involving code, as evident in the activities with a star next to them in my breakdown of my 134 hours below:
 
 - Community Activities (1.5 hours)
-  - Recharge (30 minutes)
-  - Security Everywhere Week 4 (30 minutes)
-  - Security Everywhere Week 5 (30 minutes)
+  - [Recharge](https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-606d3829e35bce2452179fe5) (30 minutes)
+  - [Security Everywhere Week 4](https://www.openlearning.com/u/axie/blog/BonzibuddyTheInsider/) (30 minutes)
+  - [Security Everywhere Week 5](https://www.openlearning.com/u/axie/blog/BsidesCrypto/) (30 minutes)
 - Core and Engineering Activities (5.5 hours)
-  - Password Hash Cracking (2 hours)
-  - Birthday Attack (2 hours)
-  - Podcast: Bit Coin and Proof of Work (30 minutes)
-  - Bitcoing Mining (1 hour)
+  - *[Password Hash Cracking](https://www.openlearning.com/u/axie/blog/HashCracking/) (2 hours)
+  - *[Birthday Attack](https://www.openlearning.com/u/axie/blog/BirthdayAttack/) (2 hours)
+  - [Podcast: Blockchain, Bitcoin and Proof of Work](https://www.openlearning.com/u/axie/blog/PodcastBlockchainBitcoinAndProofOfWork/) (30 minutes)
+  - *[Bitcoin Mining](https://www.openlearning.com/u/axie/blog/BitcoinMining/) (1 hour)
 - Extension Activities (2.5 hours)
-  - Forensics (2.5 hours)
+  - *[Forensics](https://www.openlearning.com/u/axie/blog/Forensics/) (2.5 hours)
 - Something Awesome (122.5 hours)
-  - My final PC part has arrived - time to start my project! (30 minutes)
-  - Program (100 hours)
-  - Writeup (20 hours)
-  - Reflection (2 hours)
+  - [My final PC part has arrived - time to start my project!](https://www.openlearning.com/u/axie/blog/MyFinalPcPartHasArrivedTimeToStartMyProject/) (30 minutes)
+  - [KrwmTools Program](https://github.com/axieax/krwm-tools) (100 hours)
+  - [Project Writeup](https://github.com/axieax/krwm-tools/blob/main/writeup.md) (20 hours)
+  - [Project Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/) (2 hours) - a further breakdown of time management for my Something Awesome Project can be found in this reflection throughout
+- [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/) (30 minutes)
+- This portfolio (1.5 hours)
 
+<u>Communication and Community building</u>
 
+I have been quite involved within the online community on OpenLearning, with notable examples including:
 
+- [Recharge](https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-606d3829e35bce2452179fe5) involving a conversation between Richard Buckland and me
+- Engagement with other students for the Bitcoin Mining activity
+  - [Helping another student](https://www.openlearning.com/unswcourses/courses/sec-21t1/activities/blockchain?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-6074fcbb98fad4499d068d54)
+  - [Feedback for another student](https://www.openlearning.com/unswcourses/courses/sec-21t1/activities/blockchain?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-6074f5be203cb858d14a2116)
+- [Feedback for Steven's Database Dump Guide](https://www.openlearning.com/unswcourses/courses/sec-21t1/activities/hash-cracking?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-607466f821e9cc66ec425339)
+  - ![steven](images/steven.png)
+- Comments on Something Awesome Flipgrids
+  - [Ali A](https://flipgrid.com/a43486a3)
+  - [Xuanen O](https://flipgrid.com/1506ed58)
+  - [Zenne R](https://flipgrid.com/48061188)
+- [Feedback for Will's Birthday Attack post](https://www.openlearning.com/u/willsieber/blog/BirthdayAttack#comment-60749c9f795fcd54abb6613f)
+- [Feedback for Mohammed's Birthday Attack post](https://www.openlearning.com/u/mohammednasef/blog/ThePowerOfBirthdayAttacks#comment-60749be6203cb827c3f1d8a0)
+- [Supportive comment on Zenne's Security Everywhere post](https://www.openlearning.com/u/zenneranderath-qojkj1/blog/SecurityEverywhereHumanError#comment-606db84ec212bd40dc33e2ff)
 
-
-
-
-<u>Communication</u>
-
-
-
-<u>Community building</u>
-
-
+I have also engaged with the security community by attending BSides 2021 in Canberra, which was a very exciting and interesting experience for me. I have discussed more about this experience in my [Security Everywhere Week 5](https://www.openlearning.com/u/axie/blog/BsidesCrypto/) blog post. 
 
 <u>Ethical behaviour</u>
 
-
+Ethical considerations were a significant part of my Something Awesome Project, which I reflected about in the last paragraph of my [Project Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/) towards the end. Furthermore, I have discussed ethical considerations regarding government surveillance and privacy during Case Study 5: Snoop, which I found very interesting. My points for discussion are evident in my notes for [Case Study 5 Preparation](https://www.openlearning.com/u/axie/blog/CaseStudy5Preparation/), as well as a brief discussion of points I've missed at the very beginning of my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/).
 
 ## Analysis
 
-
+Significant examples of analysis I've done since the last checkin are evident in my Something Awesome [Writeup](https://github.com/axieax/krwm-tools/blob/main/writeup.md) (4000 words of extensive analysis) and [Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/). Other examples of extensive analysis can be found in the activities starred from the breakdown above, with notable ones including my design of an efficient algorithm for [Birthday Attack](https://www.openlearning.com/u/axie/blog/BirthdayAttack/), my analysis of length extension attacks and using hashcat for password cracking in [Password Hash Cracking](https://www.openlearning.com/u/axie/blog/HashCracking/), as well as my analysis for [Bitcoin Mining](https://www.openlearning.com/u/axie/blog/BitcoinMining/) where I walked through what I did with an invalid block. Another example of analysis can be found in the first paragraph of my [Week 5 Reflection](https://www.openlearning.com/u/axie/blog/Week5Reflection/), which describes what I've learned from Week 5 content and activities. 
 
 ## Core and Engineering Activities
 
-
+I spent around my usual amount of weekly effort into the activities this time. As mentioned above, I've had to compromise by spending more time on some of the activities to make sure that I am able to get as much out of each activity I complete. A full list of the activities I've completed can be found in the breakdown above. Some of the notable activities I've completed include my design of an efficient algorithm for [Birthday Attack](https://www.openlearning.com/u/axie/blog/BirthdayAttack/), my analysis of length extension attacks and using hashcat for password cracking in [Password Hash Cracking](https://www.openlearning.com/u/axie/blog/HashCracking/), as well as my analysis for [Bitcoin Mining](https://www.openlearning.com/u/axie/blog/BitcoinMining/) where I walked through what I did with an invalid block. Most of these activities involved me challenging myself to write a practical application to consolidate my understanding of concepts learned, allowing me to achieve better results than I would manually by hand, such as in the Birthday Attack activity where I was able to find collisions up to 9 matching digits, compared to the 2 asked by the question. I found these activities very interested and thoroughly enjoyed pushing myself to do more for these.
 
 ## Extension Activities
 
-
+I usually complete extension activities as soon as they come out. However, I was only able to complete one this time due to the late release of activities as well as there being no wargames in Week 7. In my writeup for the [Forensics](https://www.openlearning.com/u/axie/blog/Forensics/) Wargame, I detailed the steps I took to complete each activity with the steps I missed and would have taken in hindsight for future wargames and CTF's. I stepped through my thought process and an explanation of why I did what I did, as well as the resources I used in order to find the flag, such as the list of file signatures from Wikipedia. I also reflected on my experience doing this activity by illustrating what I gained from it, such as using a hex editor, new things to consider (Wargame 2 head and tail) as well as a deeper understanding of networking protocols. 
 
 ## Something Awesome
 
-
+As mentioned above, I've put a lot into my Something Awesome Project and have gained much from this experience. This is evident in my extensive 4000-word [Project Writeup](https://github.com/axieax/krwm-tools/blob/main/writeup.md) (would recommend reading, but if pressed on time, check out the intro and conclusion at least) as well as my [Project Reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/). Other things I've written for this project since the last checkin include a blog post [My final PC part has arrived - time to start my project!](https://www.openlearning.com/u/axie/blog/MyFinalPcPartHasArrivedTimeToStartMyProject/) at the beginning of my project, as well as my repository which can be found [here](https://github.com/axieax/krwm-tools). I am very proud of what I've been able to achieve in this project. 
 
 
 
@@ -304,27 +304,11 @@ What I've done since:
 
 Community:
 
-https://flipgrid.com/a43486a3
-
-https://flipgrid.com/48061188
-
-https://flipgrid.com/1506ed58
-
-
-
-https://www.openlearning.com/unswcourses/courses/sec-21t1/activities/blockchain?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-6074fcbb98fad4499d068d54
 
 
 
 
 
-https://www.openlearning.com/unswcourses/courses/sec-21t1/activities/hash-cracking?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-607466f821e9cc66ec425339
-
-
-
-
-
-https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-606d3829e35bce2452179fe5
 
 https://www.openlearning.com/u/zenneranderath-qojkj1/blog/SecurityEverywhereHumanError#comment-606db84ec212bd40dc33e2ff
 
