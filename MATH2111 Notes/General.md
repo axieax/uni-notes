@@ -43,6 +43,7 @@ ODE notes: https://tutorial.math.lamar.edu/classes/de/de.aspx
 - Weierstrass test: if bigger sequence converges then smaller series converges
 - $L^2$-norm convergence (mean square convergence): $\lim_{k \rightarrow \infty} \int_a^b[f_k(x) - f(x)]^2 dx = 0$ or $\int_{-\pi}^\pi (S_nf(x) - f(x))^2dx$ approaches 0 as n approaches infinity
 - Parseval's identity: $\int_{-\pi}^\pi f^2(x)dx = ||f||_2^2 = \frac{\pi}{2}a_0^2 + \pi\sum_{k=1}^{\infty}(a_k^2+b_k^2)$
+  - If bounded, simple, $\int_{-\pi}^\pi f^2(x)dx < + \infty$, then mean square convergence
 
 # Vector Fields
 
@@ -78,7 +79,24 @@ ODE notes: https://tutorial.math.lamar.edu/classes/de/de.aspx
 - Flow integral: flow $= \int_C F \cdot ds = \int_a^b F \cdot T ds$
 - Flux of F across C $= \int_C F \cdot n ds$ where n is the outward-pointing unit normal vector on C
   - F = Mi + Nj => $\int_C G \cdot ds = \int_C Mdy - Ndx$ where $G=(-N, M)$
-- 
+- Fundamental theorem for gradient vector fields (conservative)
+  - If $F=\nabla \phi$
+  - $\int_C F \cdot ds = \phi(Q) - \phi(P)$
+  - If C is closed, P = Q so integral = 0
+  - Line integral does not depend on parameterisation
+  - This means $curl \nabla F = 0$
+- Green's theorem
+  - Flux-divergence or normal form
+    - Flux of F across C = Amount of flow leaving the region D (div F)
+    - $\int_CF \cdot n ds = \int_C -Ndx + Mdy = \int\int_D(\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y})dxdy$
+    - Assumptions:
+      - Bounded and simple region with nonempty interior
+      - Boundary C is oriented in the positive (counter-clockwise) direction, and is a finite union of smooth curves
+      - The vector field F is continuously differentiable on D
+  - Circulation-curl or tangential form
+    - Circulation = k component of curl F (scalar curl)
+    - $\int_CF \cdot T ds = \int_CMdx+Ndy=\int\int_D(\frac{\partial N}{\partial x}+\frac{\partial M}{\partial y})dxdy$
+  - 
 
 
 
