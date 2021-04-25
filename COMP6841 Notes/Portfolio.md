@@ -301,6 +301,36 @@ As mentioned above, I've put a lot into my Something Awesome Project and have ga
 
 
 
+# Portfolio Checkin 4
+
+Comments:
+
+- https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-60851a20e60af86131b865a8
+- https://www.openlearning.com/u/leilayuan-qoloux/blog/DataBreach#comment-608590f76f90024558c56c85
+- https://www.openlearning.com/u/roycehuang-qaom2f/blog/DataBreachAnu#comment-6085917bcc5ee421dd30b56e
+- https://www.openlearning.com/u/avinsingh/blog/TwoFactorAuthentication#comment-60859a833ee8f76640cb9e3f
+- https://www.openlearning.com/u/danielthurairatnam/blog/AuthenticationAttack#comment-60859b1fc4ecf7736909be38
+
+
+
+
+
+Week 7
+
+- https://www.openlearning.com/u/axie/blog/IphoneSecurityHack/
+- https://www.openlearning.com/u/axie/blog/NoGoingBack/
+- https://www.openlearning.com/u/axie/blog/Slickwraps/
+- https://www.openlearning.com/u/axie/blog/AuthenticationAttack/ - analysis
+- https://www.openlearning.com/u/axie/blog/RootkitNotes/
+
+
+
+
+
+
+
+
+
 
 
 
