@@ -1,0 +1,11 @@
+
+
+# Security Engineering
+
+## The Overlooked Asset
+
+NVIDIA claims to care about and focus on its market of gamers, designing the RTX 3060 GPU with an "unbreakable" hash rate limiter built into the video card to dissuade crypto miners from buying out the graphics card in the current market of silicon and GPU shortages. Shortly after the RTX 3060 was released, NVIDIA announced its CMP HX series of cards specifically designed for crypto mining, claiming to help gamers by separating crypto mining cards from general-purpose video cards. This is some smart marketing strategy from NVIDIA, tricking gamers to believe that the company cares about the availability of their gaming cards whilst capitalising on the crypto market, especially with the limitations of silicon production. However, amongst this debate lies the overlooked asset of environmental concerns. Normally, used graphics cards end up in the second-hand market after the original owner upgrades their card since they can generally still be used as long as they are in a decent condition, which is usually fine with day-to-day usage. Crypto mining, on the other hand, requires constantly pushing out the maximum performance from the card, reducing the card's lifespan and causing its quality to drop significantly. This and the (usual) lack of video output for the cards optimised for crypto mining means that crypto mining cards cannot be reused for any other purpose and thus has a lower resale value. Due to this, more video cards will go to waste and end up in landfill sooner. Many suggest NVIDIA to reconsider the hash limiter built into the RTX 3060 even though this doesn't directly seem good for the general market. The rise of crypto mining isn't going to stop anytime soon and miners are constantly looking for ways to get around the restrictions anyways (which had already been bypassed only a few days after release). Considering the environmental impact and sustainability of their actions in the long term would help NVIDIA realise that they are encouraging crypto mining and worsening the situation for most people, even as a profit-driven company looking to capitalise on the current market. There should be restrictions on card manufacturing in place to prevent the environmental impact of crypto mining from becoming worse. 
+
+Further reading:
+https://youtu.be/XfIibTBaoMM
+

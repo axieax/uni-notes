@@ -303,33 +303,90 @@ As mentioned above, I've put a lot into my Something Awesome Project and have ga
 
 # Portfolio Checkin 4
 
-Comments:
+## Professionalism
 
-- https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-60851a20e60af86131b865a8
-- https://www.openlearning.com/u/leilayuan-qoloux/blog/DataBreach#comment-608590f76f90024558c56c85
-- https://www.openlearning.com/u/roycehuang-qaom2f/blog/DataBreachAnu#comment-6085917bcc5ee421dd30b56e
-- https://www.openlearning.com/u/avinsingh/blog/TwoFactorAuthentication#comment-60859a833ee8f76640cb9e3f
-- https://www.openlearning.com/u/danielthurairatnam/blog/AuthenticationAttack#comment-60859b1fc4ecf7736909be38
+<u>Time Management</u>
 
+Since the term was closing, I wanted to spend more hours on some of the activities, especially ones that would be relevant to the course exam. Compared to my previous activities, I focused more on breadth rather than depth this time in order to cover as much content as I could. As such, here is a breakdown of my work over the past two weeks:
 
+- Community Activities (2 hours 45 minutes)
+  - [iPhone Security Hack](https://www.openlearning.com/u/axie/blog/IphoneSecurityHack/) (1 hour)
+  - [Accident](https://www.openlearning.com/u/axie/blog/Accident/) (45 minutes)
+  - [Asian Just Culture](https://www.openlearning.com/u/axie/blog/AsianJustCulture/) (30 minutes)
+  - [Impact](https://www.openlearning.com/u/axie/blog/Impact/) (15 minutes)
+  - [School Security](https://www.openlearning.com/u/axie/blog/SchoolSecurity/) (15 minutes)
+- Core and Engineering Activities (7 hours 45 minutes)
+  - [No Going Back](https://www.openlearning.com/u/axie/blog/NoGoingBack/) (15 minutes)
+  - [TIL: Social Credit](https://www.openlearning.com/unswcourses/courses/sec-21t1?inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-60851f66f39102717035f9d1) (15 minutes)
+  - [Data Breach](https://www.openlearning.com/u/axie/blog/Slickwraps/) (1.5 hours)
+  - [Authentication Attack](https://www.openlearning.com/u/axie/blog/AuthenticationAttack/) (1.5 hours)
+  - [Root Cause Analysis](https://www.openlearning.com/u/axie/blog/RootCauseAnalysis0/) (2 hours)
+  - [I Accept](https://www.openlearning.com/u/axie/blog/IAccept/) (45 minutes)
+  - [PKI Risks](https://www.openlearning.com/u/axie/blog/PkiRisks/) (1 hour)
+  - [The Overlooked Asset](https://www.openlearning.com/u/axie/blog/TheOverlookedAsset/) (30 minutes)
+- Extension Activities (3 hours)
+  - [Rootkit Notes](https://www.openlearning.com/u/axie/blog/RootkitNotes/) (1 hour)
+  - [Reverse Engineering](https://www.openlearning.com/u/axie/blog/ReverseEngineering/) (1 hour)
+  - [Malware Analysis](https://www.openlearning.com/u/axie/blog/MalwareAnalysis/) (1 hour)
+- Miscellaneous (12 hours 30 minutes)
+  - [Week 7 Reflection](https://www.openlearning.com/u/axie/blog/Week7Reflection/) (30 minutes)
+  - Weekly Quiz 8 (15 minutes)
+  - Week 9 Lectures and Webinar (2 hours)
+  - Week 9 Tutorial (2 hours)
+  - Weekly Quiz 9 (15 minutes)
+  - Week 10 Lectures (3 hours)
+  - Week 10 Tutorial (2 hours)
+  - [End of Course Reflection](https://www.openlearning.com/u/axie/blog/EndOfCourseReflection0/) (30 minutes)
+  - This portfolio (2 hours)
 
+<u>Communication and Community Building</u>
 
+In the last two weeks, I was able to work on my live communication skills through my Something Awesome presentation. Inspired by some of the talks at BSides Canberra 2021, I tried to mimic a casual communication style to connect with my audience better. My communication skills have definitely improved since I started university. I focused more on community activities this time, completing the following Community activities:
 
-Week 7
+- [iPhone Security Hack](https://www.openlearning.com/u/axie/blog/IphoneSecurityHack/)
+- [Accident](https://www.openlearning.com/u/axie/blog/Accident/)
+- [Asian Just Culture](https://www.openlearning.com/u/axie/blog/AsianJustCulture/)
+- [Impact](https://www.openlearning.com/u/axie/blog/Impact/)
+- [School Security](https://www.openlearning.com/u/axie/blog/SchoolSecurity/)
 
-- https://www.openlearning.com/u/axie/blog/IphoneSecurityHack/
-- https://www.openlearning.com/u/axie/blog/NoGoingBack/
-- https://www.openlearning.com/u/axie/blog/Slickwraps/
-- https://www.openlearning.com/u/axie/blog/AuthenticationAttack/ - analysis
-- https://www.openlearning.com/u/axie/blog/RootkitNotes/
+Also, here are some examples of my comments and community engagement within the online OpenLearning community. 
 
+- [Helpful Comment for the 2FA Activity](https://www.openlearning.com/u/danielthurairatnam/blog/AuthenticationAttack/#comment-60859b1fc4ecf7736909be38)
+- [Helpful Comment for the 2FA Activity](https://www.openlearning.com/u/avinsingh/blog/TwoFactorAuthentication#comment-60859a833ee8f76640cb9e3f)
+- [Fun Community Engagement](https://www.openlearning.com/unswcourses/courses/sec-21t1/?cl=1&inCohort=unswcourses%2Fcourses%2Fsec-21t1%2FCohorts%2FClassOf21T1#comment-60851a20e60af86131b865a8)
+- [Supportive Comment for the Data Breach Activity](https://www.openlearning.com/u/leilayuan-qoloux/blog/DataBreach/#comment-608590f76f90024558c56c85)
+- [Supportive Comment for the Data Breach Activity](https://www.openlearning.com/u/roycehuang-qaom2f/blog/DataBreachAnu/#comment-6085917bcc5ee421dd30b56e)
 
+<u>Ethical Behaviour</u>
 
+I reflected quite extensively on ethical concerns in the last paragraph of my [Accident](https://www.openlearning.com/u/axie/blog/Accident/) blog post. 
 
+## Analysis
 
+Notable examples of analysis can be found in my something awesome presentation, [iPhone Security Hack](https://www.openlearning.com/u/axie/blog/IphoneSecurityHack/) where I researched vulnerabilities with iPhones and discussed potential exploits, my [Data Breach](https://www.openlearning.com/u/axie/blog/Slickwraps/) activity where I had to search through archived websites to find information about the method of attack described, the last paragraph of my [Root Cause Analysis](https://www.openlearning.com/u/axie/blog/RootCauseAnalysis0/) activity, and especially in my extension activities of [Reverse Engineering](https://www.openlearning.com/u/axie/blog/ReverseEngineering/) and [Malware Analysis](https://www.openlearning.com/u/axie/blog/MalwareAnalysis/).
 
+I also analysed and reflected quite heavily on security topics in [Asian Just Culture](https://www.openlearning.com/u/axie/blog/AsianJustCulture/) and in the last paragraph of [Accident](https://www.openlearning.com/u/axie/blog/Accident/). Furthermore, reflecting on this course, as mentioned in my [End of Course Reflection](https://www.openlearning.com/u/axie/blog/EndOfCourseReflection0/), I found COMP6841 very enjoyable despite how time-consuming it was. However, I feel like I got out what I put in, and enjoyed learning about and being able to apply concepts learned from lectures to the wargames and activities. A minor example of reflection can be found in my [Week 7 Reflection](https://www.openlearning.com/u/axie/blog/Week7Reflection/) as well.
 
+## Core and Engineering Activities
 
+As explained above, I focused on completing more activities this time, being able to complete the following (with an asterisk next to notable activities):
+
+- [No Going Back](https://www.openlearning.com/u/axie/blog/NoGoingBack/)
+- *[Data Breach](https://www.openlearning.com/u/axie/blog/Slickwraps/)
+- *[Authentication Attack](https://www.openlearning.com/u/axie/blog/AuthenticationAttack/)
+- *[Root Cause Analysis](https://www.openlearning.com/u/axie/blog/RootCauseAnalysis0/)
+- [I Accept](https://www.openlearning.com/u/axie/blog/IAccept/)
+- *[PKI Risks](https://www.openlearning.com/u/axie/blog/PkiRisks/)
+- [Good Bad Ugly Communication](https://www.openlearning.com/u/axie/blog/GoodBadUglyCommunication/)
+- *[The Overlooked Asset](https://www.openlearning.com/u/axie/blog/TheOverlookedAsset/)
+
+## Extension Activities
+
+Although I normally take extensive notes for all my extension webinars, since there were no wargames for Week 7, I decided to include my [Rootkit Notes](https://www.openlearning.com/u/axie/blog/RootkitNotes/) as a blog post. I did extensive analysis for my [Reverse Engineering](https://www.openlearning.com/u/axie/blog/ReverseEngineering/) and [Malware Analysis](https://www.openlearning.com/u/axie/blog/MalwareAnalysis/) activities, detailing additional methods of solving the wargames. 
+
+## Something Awesome
+
+My Something Awesome project consists of my live presentation, my [source code](https://github.com/axieax/krwm-tools), my [writeup](https://github.com/axieax/krwm-tools/blob/main/writeup.md) as well as my [reflection](https://www.openlearning.com/u/axie/blog/KrwmtoolsReflection/).
 
 
 

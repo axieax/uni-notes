@@ -44,10 +44,6 @@ Readings:
 - TOTP: https://www.openlearning.com/u/avinsingh/blog/TwoFactorAuthentication/
 - S/Key: https://www.openlearning.com/u/danielthurairatnam/blog/AuthenticationAttack/
 
-# Extension - Root Kits
-
-
-
 
 
 # Optional Challenges

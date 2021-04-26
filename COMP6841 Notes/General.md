@@ -22,3 +22,10 @@ Fragment input - e.g. A.write('<sc')A.write('rip')A.write('t>') etc..
 
 
 
+Week 10 - proud of what I've achieved over the course
+
+Watch bits of security video
+
+Update community links
+
+Forward secrecy
