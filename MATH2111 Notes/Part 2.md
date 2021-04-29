@@ -6,9 +6,13 @@ $|f(x) - f_N(x)| \rightarrow 0$
 
 $cos(k\pi) = (-1)^k$ for discrete k
 
+Gradient normal to surface
+
 ODE notes: https://tutorial.math.lamar.edu/classes/de/de.aspx
 
 # Fourier Series
+
+
 
 - Periodic functions approximated by simple periodic functions
 - Inner product on V is a map that assigns each $f,g \in V$ a real number $<f,g>$, e.g. dot product, $\int_a^b{f(x)g(x)}$
@@ -57,8 +61,11 @@ ODE notes: https://tutorial.math.lamar.edu/classes/de/de.aspx
   - Rotation
   - If F is a 2D vector field, curl F is calculated by treating F as a 3D vector field with 0 as third component
   - Gradient field
+  - $\nabla \times F = (\frac{\partial F_3}{\partial y} - \frac{\partial F_2}{\partial z}, \frac{\partial F_1}{\partial z} - \frac{\partial F_3}{\partial x}, \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y})$
 
 ![vector identities](images/vector identities.png)
+
+Conservative vector field: $curl \nabla f = 0$
 
 # Path Integrals (scalar line integrals)
 
@@ -95,7 +102,7 @@ ODE notes: https://tutorial.math.lamar.edu/classes/de/de.aspx
       - The vector field F is continuously differentiable on D
   - Circulation-curl or tangential form
     - Circulation = k component of curl F (scalar curl)
-    - $\int_CF \cdot T ds = \int_CMdx+Ndy=\int\int_D(\frac{\partial N}{\partial x}+\frac{\partial M}{\partial y})dxdy$
+    - $\int_CF \cdot T ds = \int_CMdx+Ndy=\int\int_D(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y})dxdy$
   - 
 
 
