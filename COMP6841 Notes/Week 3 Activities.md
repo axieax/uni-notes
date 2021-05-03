@@ -103,7 +103,7 @@ This one was pretty "basic". Noticing the buffer size of 32 bytes, an overflow o
 
 ## Whereami
 
-This one was similar to the previous wargame. Instead, the overflowed variable is the address of a function we want to access. Using `objdump -d whereami`, we find that the win() function is located at 080491a2. Hence, we can overflow the buffer of 64 bytes with `python2 -c "print('a' * 64 + '\xa2\x91\x04\x08')" | ./whereami` and get the flag COMP6841{Oh_Look_Youre_So_1337_now}.
+This one was similar to the previous wargame. Instead, the overflowed variable is the address of a function we want to access. Using `objdump -d whereami` (or `info function` in gdb), we find that the win() function is located at 080491a2. Hence, we can overflow the buffer of 64 bytes with `python2 -c "print('a' * 64 + '\xa2\x91\x04\x08')" | ./whereami` and get the flag COMP6841{Oh_Look_Youre_So_1337_now}.
 
 ## returnToSqrOne
 
@@ -126,9 +126,19 @@ Run the program with all the payloads and search for the flag in the output.
 
 `for i in {200..300}; do python2 -c "print 'a' * $i + '\xe7\x84\x04\x08'"| ./returnToSqrOne; done;`
 
+<u>Method 4: New</u>
 
+gdb disas iHateWritingCodeInMainBecauseTheStackFrameIsWeird - don't need to do this
 
+Run gdb on program, send a identifiable pattern as input (https://wiremask.eu/tools/buffer-overflow-pattern-generator/)
 
+seg fault - examine stack frame using info registers (or $ebp) - get HEX of ascii letters at ebp
+
+Return address is stored at ebp + 4
+
+Ebp points to an offset of 264
+
+Payload should thus be offset by 264 + 4 = 268 bytes
 
 
 

@@ -44,7 +44,7 @@ ODE notes: https://tutorial.math.lamar.edu/classes/de/de.aspx
 - Uniform convergence - partial sum $f_n = \sum_{k=1}^n f(k)$ converges uniformly to $f$ as $n \rightarrow \infty$
   - $\sup_{x\in[a,b]}|f_k(x) - f(x)| \leq \epsilon$ for all $k \geq K$
   - No uniform convergence if discontinuity exists in interval
-- Weierstrass test: if bigger sequence converges then smaller series converges
+- Weierstrass test: if bigger sequence converges then smaller series converges - uniform convergence
 - $L^2$-norm convergence (mean square convergence): $\lim_{k \rightarrow \infty} \int_a^b[f_k(x) - f(x)]^2 dx = 0$ or $\int_{-\pi}^\pi (S_nf(x) - f(x))^2dx$ approaches 0 as n approaches infinity
 - Parseval's identity: $\int_{-\pi}^\pi f^2(x)dx = ||f||_2^2 = \frac{\pi}{2}a_0^2 + \pi\sum_{k=1}^{\infty}(a_k^2+b_k^2)$
   - If bounded, simple, $\int_{-\pi}^\pi f^2(x)dx < + \infty$, then mean square convergence
@@ -104,6 +104,37 @@ Conservative vector field: $curl \nabla f = 0$
     - Circulation = k component of curl F (scalar curl)
     - $\int_CF \cdot T ds = \int_CMdx+Ndy=\int\int_D(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y})dxdy$
   - 
+
+# Surface Integrals
+
+
+
+# Integral Theorems
+
+- Stokes' Theorem
+  - $\int\int_S curlF \cdot dS = \int_{\partial S} F \cdot dS$
+- Divergence Theorem
+  - $\int\int_S F \cdot dS = \int\int\int_W divF dV$
+
+
+
+
+
+# Parameterisation
+
+- Circle
+  - $x = rcos \theta$
+  - $y = rsin \theta$
+  - Determinant of Jacobian: r
+- Sphere
+  - $x = cos \theta sin \phi$
+  - $y = sin \theta sin \phi$
+  - $z = cos \phi$
+  - Norm of normal $(\pm \frac{\partial \Phi}{\partial \theta} \times \frac{\partial \Phi}{\partial \phi})$: $\sin \phi$
+
+
+
+
 
 
 

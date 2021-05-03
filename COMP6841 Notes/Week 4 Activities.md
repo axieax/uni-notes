@@ -163,7 +163,9 @@ From running this program, I figured out that two random variables generated wou
 
 
 
+Find offset without Python:
 
+`for i in $(seq 1 30); do echo "Offset $1"; echo "AAAA%$i"'$x' | ./medium; done | grep 41 -C 2`
 
 
 

@@ -89,6 +89,10 @@ Using `sslscan` to analyse GitHub's security protocols was a very interesting, r
 Further reading:
 https://www.cloudflare.com/en-gb/learning/ssl/why-use-tls-1.3/
 
+
+
+Can use https://hackertarget.com/ssl-check/ as well
+
 ## PKI Risks
 
 Risk #3: "How secure is the verifying computer?" explores the idea that computers inherently trust "root certificates", a topmost certificate which identifies the root certificate authority (CA) and signs other certificates. Since computers rely on the certificate chain of trust, an insecure or invalid root certificate could potentially sign a untrustworthy site, causing the computer to allow access to such untrustworthy sites. Furthermore, root certificates are self-signed, meaning that an attacker can add a malicious root certificate to the list of root certificates, which are treated like legitimate certificates on a computer. By doing so, the computer will trust the malicious root certificate for verifying other certificates.

@@ -123,6 +123,10 @@ Although I initially solved this using the vulnerability described above, I once
 
 COMP6841{Al1_th15_w0rk_4_nO_p4yOu7???}
 
+
+
+Note: Redirect link - use RequestBin
+
 # Optional
 
 ## Classical Ciphers
