@@ -1,5 +1,3 @@
-
-
 # Agents
 
 - Reactive agent
@@ -11,10 +9,6 @@
 - Utility-based agent
 - Game playing agent
 - Learning agent
-
-
-
-
 
 
 
