@@ -3,7 +3,7 @@
 ## Feature-based representation of actions
 
 - Precondition of pick-up coffee (puc):
-  - RLoc = (cs and not rhc)
+  - (RLoc = cs) and (not rhc)
 - Rules for "location is cs":
   - Causal rules (how features change):
     - (RLoc' = cs) <- ((RLoc = off) and (act = mcc))
