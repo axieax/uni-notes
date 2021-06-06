@@ -79,7 +79,7 @@ if p < r
 
 - Produces pairs in stages, with possible revisions.
 - A man who has not been paired with a woman will be called free.
-- Men will be proposing to women.Women will decide if they accept a proposal or not.
+- Men will be proposing to women. Women will decide if they accept a proposal or not.
 - Start with all men free.
 
 ```pseudocode
@@ -97,12 +97,12 @@ While there exists a free man who has not proposed to all women
 
 Proof:
 
-- Claim 1: Algorithm terminates after <= n^2 rounds of the while loop
+- Claim 1: Algorithm terminates after $\leq n^2$ rounds of the while loop
   - In every round of the while loop, one man proposes to one woman
   - Every man can propose to a woman at most once
   - Thus, every man can make at most n proposals
-  - There are n men, so in total they can make <= n^2 proposals
-  - Thus, the while loop can be executed no more than n^2 times
+  - There are n men, so in total they can make $\leq n^2$ proposals
+  - Thus, the while loop can be executed no more than $n^2$ times
 - Claim 2: Algorithm produces a matching, i.e., every man is eventually paired with a woman (and thus also every woman is paired to a man)
   - Assume that the while While loop has terminated, but m is still free.
   - This means that m has already proposed to every woman.
@@ -113,7 +113,7 @@ Proof:
     - A woman is paired with men of increasing ranks on her list
     - A man is paired with women of increasing ranks on his list
   - Proof by contradiction
-    - Assume matching not stable, i.e. there are two pairs p = (m, w) and p' = (m', w') such that:
+    - Assume matching not stable, i.e. there are two pairs $p = (m, w)$ and $p' = (m', w')$ such that:
       - m prefers w' over w
       - w' prefers m over m'
     - Since m prefers w' over w, he must have proposed to w' before proposing to w
