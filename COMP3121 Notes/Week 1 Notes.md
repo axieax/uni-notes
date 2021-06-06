@@ -70,6 +70,60 @@ if p < r
 
 ## Stable matching problem
 
+- A set of $n$ pairs $p = (m, w)$ of a man $m$ and a woman $w$ so that the following situation never happens:
+  - For two pairs $p = (m,w)$ and $p′ = (m′,w′)$:
+    - Man $m$ prefers woman $w′$ to woman $w$, and
+    - Woman $w′$ prefers man $m$ to man $m′$
+
+### Gale - Shapley Algorithm
+
+- Produces pairs in stages, with possible revisions.
+- A man who has not been paired with a woman will be called free.
+- Men will be proposing to women.Women will decide if they accept a proposal or not.
+- Start with all men free.
+
+```pseudocode
+While there exists a free man who has not proposed to all women
+	pick such a free man m and have him propose to the highest ranking woman w on his list to whom he has not proposed yet;
+	If no one has proposed to w yet
+		she always accepts and a pair p = (m, w) is formed;
+	Else she is already in a pair p′ = (m′, w);
+		If m is higher on her preference list than m′ the pair p′ = (m′, w) is deleted;
+			m′ becomes a free man;
+			a new pair p = (m, w) is formed;
+		Else m is lower on her preference list than m′;
+			the proposal is rejected and m remains free.
+```
+
+Proof:
+
+- Claim 1: Algorithm terminates after <= n^2 rounds of the while loop
+  - In every round of the while loop, one man proposes to one woman
+  - Every man can propose to a woman at most once
+  - Thus, every man can make at most n proposals
+  - There are n men, so in total they can make <= n^2 proposals
+  - Thus, the while loop can be executed no more than n^2 times
+- Claim 2: Algorithm produces a matching, i.e., every man is eventually paired with a woman (and thus also every woman is paired to a man)
+  - Assume that the while While loop has terminated, but m is still free.
+  - This means that m has already proposed to every woman.
+  - Thus, every woman is paired with a man, because a woman is not paired with anyone only if no one has made a proposal to her.
+  - But this would mean that n women are paired with all of n men so m cannot be free. **Contradiction!**
+- Claim 3: The matching produced by the algorithm is stable
+  - Notes
+    - A woman is paired with men of increasing ranks on her list
+    - A man is paired with women of increasing ranks on his list
+  - Proof by contradiction
+    - Assume matching not stable, i.e. there are two pairs p = (m, w) and p' = (m', w') such that:
+      - m prefers w' over w
+      - w' prefers m over m'
+    - Since m prefers w' over w, he must have proposed to w' before proposing to w
+    - Since he is paired with w, woman w' must have either:
+      - Rejected him because she was already with someone whom she prefers, or
+      - Dropped him later after a proposal from someone whom she prefers
+    - In both cases, she would now be with m' whom she prefers over m. **Contradiction!**
+
+
+
 
 
 
