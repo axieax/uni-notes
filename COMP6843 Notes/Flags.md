@@ -240,17 +240,21 @@ Task: find as many subdomains as you can by using reconnaissance
         solve()
     ```
 
-16. Subdomain bruteforce - creditcard
+16. Subdomain bruteforce script - creditcard
 
 17. www-dev
 
-18. www-cdn
+18. Amass to find www-staging subdomain
+
+19. www-cdn
+
+20. 
 
 
 
-Notes:
+<u>Notes:</u>
 
-- Find subdomains using cert.sh, pentest-tools.com, subdomainnfinder.c99.nl or script:
+- Find subdomains using cert.sh, pentest-tools.com, subdomainnfinder.c99.nl, Amass or script:
 
   ```python
   import os
