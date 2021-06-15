@@ -108,30 +108,6 @@ Task: find as many subdomains as you can by using reconnaissance
     where each link returns something similar. I used Python to make a request to each subpage through haas recursively:
 
     ```python
-    import os
-    import re
-    import time
-    import requests
-    from OpenSSL import crypto
-    
-    ''' Adapted from Brendan Nyholm '''
-    # .p12 certificate
-    p12_path = os.path.expanduser(r'~/Downloads/6443.p12')
-    p12_password = '' # TODO
-    # create pem file from p12
-    p12 = crypto.load_pkcs12(open(p12_path, 'rb').read(), p12_password.encode())
-    # PEM formatted private key
-    key_path = os.path.expanduser(r'~/myKey.key')
-    k = crypto.dump_privatekey(crypto.FILETYPE_PEM, p12.get_privatekey())
-    with open(key_path, 'wb') as f_key:
-        f_key.write(k)
-    # PEM formatted certificate
-    cert_path = os.path.expanduser(r'~/myCert.crt')
-    c = crypto.dump_certificate(crypto.FILETYPE_PEM, p12.get_certificate())
-    with open(cert_path, 'wb') as f_cert:
-        f_cert.write(c)
-    lientcert = (cert_path, key_path)
-    
     ''' Make recursive requests to kb.quoccabank.com via haas.quoccabank.com '''
     seen = set()
     def solve(sub='', throttle=0):
@@ -160,7 +136,7 @@ Task: find as many subdomains as you can by using reconnaissance
         # python deep.py | grep COMP6443
         solve()
     ```
-
+    
 15. HTTP as a service challenge 3 (calculator) - get request with
 
     ```http
@@ -185,30 +161,6 @@ Task: find as many subdomains as you can by using reconnaissance
     We need to make POST requests with answer= the solved mathematical question, and carrying the cookie returned each time. I used the following Python script:
 
     ```python
-    import os
-    import re
-    import time
-    import requests
-    from OpenSSL import crypto
-    
-    ''' Adapted from Brendan Nyholm '''
-    # .p12 certificate
-    p12_path = os.path.expanduser(r'~/Downloads/6443.p12')
-    p12_password = '' # TODO
-    # create pem file from p12
-    p12 = crypto.load_pkcs12(open(p12_path, 'rb').read(), p12_password.encode())
-    # PEM formatted private key
-    key_path = os.path.expanduser(r'~/myKey.key')
-    k = crypto.dump_privatekey(crypto.FILETYPE_PEM, p12.get_privatekey())
-    with open(key_path, 'wb') as f_key:
-        f_key.write(k)
-    # PEM formatted certificate
-    cert_path = os.path.expanduser(r'~/myCert.crt')
-    c = crypto.dump_certificate(crypto.FILETYPE_PEM, p12.get_certificate())
-    with open(cert_path, 'wb') as f_cert:
-        f_cert.write(c)
-    lientcert = (cert_path, key_path)
-    
     ''' Make recursive requests to kb.quoccabank.com via haas.quoccabank.com '''
     def solve(prev_answer=0, prev_cookie='', throttle=0):
         # make request
@@ -239,7 +191,7 @@ Task: find as many subdomains as you can by using reconnaissance
         # python calculator.py | grep COMP6443
         solve()
     ```
-
+    
 16. Subdomain bruteforce script - creditcard
 
 17. www-dev
@@ -257,33 +209,6 @@ Task: find as many subdomains as you can by using reconnaissance
 - Find subdomains using cert.sh, pentest-tools.com, subdomainnfinder.c99.nl, Amass or script:
 
   ```python
-  import os
-  import re
-  import sys
-  import time
-  import requests
-  from OpenSSL import crypto
-  
-  ''' Adapted from Brendan Nyholm '''
-  # .p12 certificate
-  p12_path = os.path.expanduser(r'~/Downloads/6443.p12')
-  p12_password = '' # TODO
-  # create pem file from p12
-  p12 = crypto.load_pkcs12(open(p12_path, 'rb').read(), p12_password.encode())
-  # PEM formatted private key
-  key_path = os.path.expanduser(r'~/myKey.key')
-  k = crypto.dump_privatekey(crypto.FILETYPE_PEM, p12.get_privatekey())
-  with open(key_path, 'wb') as f_key:
-      f_key.write(k)
-  # PEM formatted certificate
-  cert_path = os.path.expanduser(r'~/myCert.crt')
-  c = crypto.dump_certificate(crypto.FILETYPE_PEM, p12.get_certificate())
-  with open(cert_path, 'wb') as f_cert:
-      f_cert.write(c)
-  lientcert = (cert_path, key_path)
-  
-  
-  ''' Make recursive requests to kb.quoccabank.com via haas.quoccabank.com '''
   def solve(subdomain, throttle=0):
       # make request
       print(f'\n\nSubdomain: {subdomain}')
@@ -305,7 +230,7 @@ Task: find as many subdomains as you can by using reconnaissance
       for word in wordlist:
           solve(word)
   ```
-
+  
 - Burp Suite - install extension Copy As Python - Requests --> right click intercepted request and select copy to Python
 
 - 
@@ -314,7 +239,83 @@ Task: find as many subdomains as you can by using reconnaissance
 
 ## Week 2
 
-1. blogs - meta tag flag attribute
+blog subdomain
+
+1. meta tag flag attribute in root blog page source code, obtaining COMP6443{ivefinallyfoundsomeone}
+
+2. Noticing blog post pages had urls of the form 'blog.quoccabank.com/?p=x', manually trying x=2 redirected to 'blog.quoccabank.com?page_id=2', which contained a flag. I then wrote a Python script to extract 2 more flags (3 in total using this method).
+
+   ```python
+   # make requests to blog, bruteforcing page ids
+   for i in range(10000):
+     resp = requests.get(f'https://blog.quoccabank.com/?page_id={i}', cert=(cert_path, key_path))
+     matches = re.findall(r'COMP6443{.*?}', resp.text)
+     matches.remove('COMP6443{ivefinallyfoundsomeone}')
+     if matches:
+       print(matches)
+   ```
+
+   Obtained COMP6443{hiddenpostflag} from page 2, COMP6443{strongpasswordsaregreat} from page 45 and COMP6443{restructuringisonthecards} from page 53
+
+3. Blog post comments get sent to /wp-comments-post.php (intercept), anything after the base url is ignored, with relative links relative to that?? - 2 more flags needed
+
+sales subdomain
+
+1. Burp suite indicated that a cookie with key metadata and value YWRtaW49MA%3D%3D was being sent on form submission, which didn't change with varying inputs. Upon searching what the HTML encoding for %3D was, I found that it represented the '=' character, which seemed like a base64 encoded string. Substituting and decoding, this refered to the string 'admin=0'. Simply updating the cookie to the base64 encoded version of 'admin=1', encoded appropriately, allowed me to gain access to the sales page and obtain the flag. 
+
+files subdomain
+
+1. Documents are of the form: files.quoccabank.com/document/{file_name}?r={base64encodedUser}
+2. Intercepted new notes go to ./upload - can upload to another user's account?
+
+notes subdomain
+
+1. Noticed refreshing after a while, "cookie expired" appeared -> check cookie with CookieManager. Tried manually changing expiration of notes_auth cookie, which didn't do anything. Noticed value of cookie was a JWT -> edited payload by overriding the expiry field to a bigger timestamp, and username from my zID@quoccabank.com to admin@quoccabank.com. Update the original cookie to the new JWT token to obtain the flag (server did not verify signature of jwt).
+
+
+
+
+
+
+
+
+
+
+
+All Python Scripts which use Requests to connect to *.quoccabank.com have the following header
+
+```python
+import os
+import re
+import sys
+import time
+import requests
+from OpenSSL import crypto
+
+''' Adapted from Brendan Nyholm '''
+# .p12 certificate
+p12_path = os.path.expanduser(r'~/Downloads/6443.p12')
+p12_password = '' # TODO
+# create pem file from p12
+p12 = crypto.load_pkcs12(open(p12_path, 'rb').read(), p12_password.encode())
+# PEM formatted private key
+key_path = os.path.expanduser(r'~/myKey.key')
+k = crypto.dump_privatekey(crypto.FILETYPE_PEM, p12.get_privatekey())
+with open(key_path, 'wb') as f_key:
+    f_key.write(k)
+# PEM formatted certificate
+cert_path = os.path.expanduser(r'~/myCert.crt')
+c = crypto.dump_certificate(crypto.FILETYPE_PEM, p12.get_certificate())
+with open(cert_path, 'wb') as f_cert:
+    f_cert.write(c)
+lientcert = (cert_path, key_path)
+```
+
+
+
+
+
+
 
 
 
