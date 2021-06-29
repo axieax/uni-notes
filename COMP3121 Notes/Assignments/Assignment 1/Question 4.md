@@ -6,7 +6,7 @@ Andrew Xie, z5317337
 
 Suppose array $S = s_1, s_2, ..., s_m$ consists of a sequence of $m$ consecutive positive integers without any skipped numbers. Then we find that the middle term will always be the average of the first and last elements of $S$ (expected average value), defining middle term by the following:
 
-​	i) $m$ is even, THEN the middle term will be the average of the two middle elements ($s_{\frac{m+1}{2} - 1}$ and $s_{\frac{m+1}{2}}$).
+​	i) IF $m$ is even, THEN the middle term will be the average of the two middle elements ($s_{\frac{m+1}{2} - 1}$ and $s_{\frac{m+1}{2}}$).
 ​	ii) ELSE IF $m$ is odd, THEN the middle term is the middle element $s_{\frac{m+1}{2}}$.
 
 This property can be extended to all partitions of $S$ since $S$ consists of consecutive positive integers. We can use this property to determine whether the skipped element $k$ lies in the lower or upper half of any partition of array $A$, which consists of a sequence of the form $1,2,3,...,k-1,k+1,...2^n$. It can be seen that for any partition $P$ of $A$ containing $k$, the last element of $P$ would be 1 greater than it should have been, causing the expected average value of the first and last elements of $P$ to be greater by $0.5$. If the middle term of $P$ is greater than this expected average, this indicates that $k$ is located in the lower half of $P$ since an earlier skipped number would cause the middle term to be 1 greater than it should have been, and thus $0.5$ greater than the expected average value. Similarly, if $k$ was located in the upper half of $P$, the expected average value would be $0.5$ greater than the middle term. Also, the middle term equaling the expected average value of $P$ indicates that the middle term is the missing number $k$.
@@ -26,5 +26,4 @@ WHILE skipped element not found in a partition P of A:
     ELSE IF middle term > expected average, THEN
         search with P <- lower partition of P;
 ```
-
 

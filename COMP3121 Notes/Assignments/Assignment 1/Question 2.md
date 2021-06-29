@@ -19,6 +19,5 @@ WHILE left <= right:
     IF S == guess_sum, THEN return E;
     ELSE IF S < guess_sum, THEN lower guess for E with right <- E - 1;
     ELSE IF S > guess_sum, THEN increase guess for E with left <- E + 1;
-return False;
 ```
 
