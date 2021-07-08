@@ -66,7 +66,16 @@ Examples:
   - Second condition: $f(n) = n \log_2 n = \Theta(n)$? False.
   - Third condition:
     - $f(n) = n \log_2 n = \Omega(n^{1 + \epsilon})$ for some $\epsilon \gt 0$? False since for every $\epsilon \gt 0$ and every $c \gt 0$, no matter how small, $\log_2 n \lt c n^\epsilon$ for all sufficiently large $n$ (use L'Hopital's Rule to show that $c = \log n / n^\epsilon \to 0$).
-  - In this case, the master theorem does not apply
+  - In this case, the master theorem does not apply. However, the asymptotic growth rate of $T(n)$ can still be estimated with a similar technique to the proof of the master theorem.
+    - Recursively substituting and expanding at each step to obtain $\Theta(n(\log n) ^ 2)$
+    - ![rec](images/rec.png)
+
+# Tips
+
+- For any $b \gt 1$, $\log_bn = \log_b2 \log_2n$
+- $a ^ {\log_b n} = n ^ {\log_b a}$
+
+
 
 
 
