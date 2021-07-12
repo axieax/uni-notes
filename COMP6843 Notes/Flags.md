@@ -409,7 +409,8 @@ Objectives:
   - Inject: `') OR 1=1) ORDER BY id ASC-- )`
   - Note: union select * from bproducts doesn't give flag :(
 - Find alternate means to login other than the obvious (no SQLi required)
-  - 
+  - /login.html form sends a post request with susername and spassword
+  - Can also login by sending a GET request to /login.html?susername=admin%40quoccabank.com&spassword=Admin%40123
 - Become admin without logging into admin
   - Cookie (edit base_encoded email:user to email:admin)
 - Login to admin using its actual password without online brute-forcing
