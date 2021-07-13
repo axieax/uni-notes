@@ -18,11 +18,11 @@ Registering as a normal user (such as with a username of 'foo') and creating a n
 
 <u>Impact:</u>
 
-The IDOR vulnerability means that any files from any users can be leaked through directly manipulating the query parameters of username and filename. This includes sensitive files such as 'flag' from the admin's account. This is a critical vulnerability since sensitive files from any sensitive Quoccabank clients can be leaked, as well as important data stored on an admin account which could indicate endpoints that regular users wouldn't usually know about, such as the '/admin' endpoint leaked from the admin's flag file in the image above.
+The IDOR vulnerability means that any files from any users can be leaked by directly manipulating the query parameters of username and filename. This includes sensitive files such as 'flag' from the admin's account. This is a critical vulnerability since sensitive files from any sensitive Quoccabank clients can be leaked, as well as important data stored on an admin account which could indicate endpoints that regular users wouldn't usually know about, such as the '/admin' endpoint leaked from the admin's flag file in the image above.
 
 <u>Remediation:</u>
 
-The user's session cookie should be used to authenticate the user before access to requested files are given. The cookie should be tamper proof so that only those who should have access to the files can view them. If file sharing through this method was an intended feature (which doesn't seem likely given that normal users cannot update the permissions of their files), then other authorised users will also need to be validated on the server-side before they are able to view the file. 
+The user's session cookie should be used to authenticate the user before access to requested files is given. The cookie should be tamper-proof so that only those who should have access to the files can view them. If file sharing through this method was an intended feature (which doesn't seem likely given that normal users cannot update the permissions of their files), then other authorised users will also need to be validated on the server-side before they are able to view the file. 
 
 
 
@@ -36,13 +36,13 @@ Vulnerability Severity: High
 
 <u>Proof of Concept / Steps to Reproduce:</u>
 
-Creating a file with the content of `<script>alert(1)</script>`, it can be seen that navigating to and accessing the file will run the script on the client side. As demonstrated in the image below, the popup alert of 1 appeared when loading the page. This proof of concept demonstrates that file content is vulnerable to XSS, and that arbitrary JavaScript code can be executed on the client-side. 
+Creating a file with the content of `<script>alert(1)</script>`, it can be seen that navigating to and accessing the file will run the script on the client side. As demonstrated in the image below, the popup alert of 1 appeared when loading the page. This proof of concept demonstrates that file content is vulnerable to XSS, and that arbitrary JavaScript code can be executed on the client side. 
 
 ![Files 2](images/files2.png)
 
 <u>Impact:</u>
 
-If file sharing is an intended feature, a malicious user can execute arbitrary client-side JavaScript code on any recipient's browser if they access the page. The vulnerability means that an attacker can steal another user's authentication session token and login as if they were the compromised user, providing access to all their files and permissions. 
+If file sharing is an intended feature, a malicious user can execute arbitrary client-side JavaScript code on any recipient's browser if they access the page. The vulnerability means that an attacker can steal another user's authentication session token and login as if they were the compromised user, providing access to all their files and permissions. Even if file sharing isn't a feature, staff or admins who have access to any user files may be vulnerable to such an attack when asked to check out the malicious file as well. 
 
 <u>Remediation:</u>
 
@@ -88,11 +88,11 @@ In less than two minutes, the program indicated that 1024 was the expected acces
 
 <u>Impact:</u>
 
-As can be seen above, a normal user is able to access the admin portal content without initially knowing the correct access code. However, brute-forcing and trying every four-digit access code combination allows one to successfully find thee correct code and access the contents behind the authentication in less than two minutes. 
+As can be seen above, a normal user is able to access the admin portal content without initially knowing the correct access code. However, brute-forcing and trying every four-digit access code combination allows one to successfully find the correct code and access the contents behind the authentication in less than two minutes. 
 
 <u>Remediation:</u>
 
-Since there are only 10<sup>4</sup> or 10000 such combinations of four-digit codes, someone is able to easily brute-force the authentication by trying each combination. Increasing the complexity of the code (such as having extra digits or using alphanumeric characters like a password) makes brute-forcing most costly. Incorporating rate limiting to the requests made slows down the process of brute-forcing, which makes finding the correct access code through a similar method definitely more time-consuming. However, as suggested in the image, this portal seems to be deprecated so the best form of prevention is to not have the endpoint in the first place by removing it. 
+Since there are only 10<sup>4</sup> or 10000 such combinations of four-digit codes, someone is able to easily brute-force the authentication by trying each combination. Increasing the complexity of the code (such as having extra digits or using alphanumeric characters like a password) makes brute-forcing more costly. Incorporating rate-limiting to requests slows down the process of brute-forcing, which makes finding the correct access code through a similar method more time-consuming. In such a case, using a secure password instead may be a better alternative. However, as suggested in the image, this portal seems to be deprecated so the best form of prevention is to not have the endpoint in the first place by removing it. 
 
 
 
@@ -100,7 +100,7 @@ Since there are only 10<sup>4</sup> or 10000 such combinations of four-digit cod
 
 <u>Vulnerability Details:</u>
 
-Using passive reconnaissance, a user is able to find the endpoint to a sensitive page containing instructions on providing staff access to themselves. This also means that any normal user is able to gain staff privileges and access sensitive staff data through vertical privilege escalation. Since staff members have access to the Flask secret key, an attacker is able to login as any desired user and access sensitive files on their account, as well as undergo further vertical privilege escalation to obtain the Admin role. 
+Using passive reconnaissance, a user is able to find the endpoint to a sensitive page containing instructions on providing staff access to themselves. This also means that any normal user is able to gain staff privileges and access sensitive staff data through vertical privilege escalation. Since staff members have access to the Flask secret key, an attacker can log in as any desired user and access sensitive files on their account, as well as undergo further vertical privilege escalation to obtain the Admin role. 
 
 Vulnerability Severity: Critical
 
@@ -184,7 +184,7 @@ The WFH help page containing instructions for staff relied on security by obscur
 
 
 
-haas
+## Vulnerability 5: SSRF in haas.quoccabank.com
 
 get through logic hole - bypass waf? trusted internal server
 
